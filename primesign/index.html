@@ -63,8 +63,6 @@ img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;text-align:inherit}
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 28px}
-.eyebrow{display:inline-flex;align-items:center;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
-.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:12px 0 0 var(--lime),24px 0 0 var(--sky);margin-right:36px}
 h1,h2,h3{line-height:1.02;letter-spacing:-.035em;font-weight:800}
 h2{font-size:clamp(34px,5vw,66px)}
 .lead{font-size:clamp(16.5px,1.5vw,19px);color:var(--muted-d);max-width:600px}
@@ -101,7 +99,7 @@ h2{font-size:clamp(34px,5vw,66px)}
   linear-gradient(0deg,var(--ink) 0%,rgba(10,10,11,0) 35%),
   radial-gradient(60% 70% at 0% 100%,rgba(227,6,19,.32),transparent 70%)}
 .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center;padding-bottom:44px}
-.hero h1{font-size:clamp(46px,6.4vw,92px);margin:22px 0 22px;text-transform:uppercase;letter-spacing:-.045em;line-height:.92}
+.hero h1{font-size:clamp(46px,6.4vw,92px);margin:0 0 22px;text-transform:uppercase;letter-spacing:-.045em;line-height:.92}
 .hero h1 .l{display:block;overflow:hidden}
 .hero h1 .l>span{display:inline-block;transform:translateY(105%);animation:up 1s var(--ease) forwards}
 .hero h1 .l:nth-child(2)>span{animation-delay:.12s}
@@ -149,7 +147,7 @@ section{padding:130px 0}
 .light{background:var(--paper);color:var(--text)}
 .light.alt{background:var(--paper-2)}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px}
-.sec-head h2{margin-top:18px;max-width:760px}
+.sec-head h2{max-width:760px}
 
 /* LINEAS */
 .lines{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--text)}
@@ -234,6 +232,7 @@ section{padding:130px 0}
 .fx-cmp .lbl.l{left:10px}
 .fx-cmp .lbl.r{right:10px;background:rgba(255,255,255,.9);color:var(--ink)}
 .sheet .fx-cmp{cursor:ew-resize;touch-action:none}
+.mat .fx-cmp .lbl{display:none}
 .sheet .fx-cmp .lbl{top:14px;font-size:13px;padding:7px 12px}
 .sheet .fx-cmp .lbl.r{right:64px}
 
@@ -293,7 +292,7 @@ section{padding:130px 0}
 .sheet-left .sw{aspect-ratio:1/1;border-radius:18px;box-shadow:0 40px 70px -30px rgba(0,0,0,.9)}
 .sheet-hint{font-size:12.5px;color:var(--muted-d);text-align:center}
 .sheet-right{padding:38px 36px 30px;display:flex;flex-direction:column}
-.sheet-right .eyebrow{margin-bottom:14px}
+
 .sheet-right h3{font-size:clamp(30px,3.4vw,44px);margin-bottom:14px}
 .sheet-right>p{color:#cfcfd6;font-size:16px}
 .specs{list-style:none;display:grid;gap:10px;margin:24px 0}
@@ -368,7 +367,7 @@ section{padding:130px 0}
 .form-sec{position:relative;overflow:hidden;isolation:isolate}
 .form-sec::before{content:"";position:absolute;width:900px;height:900px;left:-320px;bottom:-460px;background:radial-gradient(closest-side,rgba(227,6,19,.35),transparent 70%);z-index:-1}
 .form-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
-.form-side h2{margin:18px 0 20px}
+.form-side h2{margin:0 0 20px}
 .checks{list-style:none;display:grid;gap:14px;margin-top:32px}
 .checks li{display:flex;gap:12px;align-items:center;font-size:15.5px;color:#dcdce2}
 .checks svg{flex:none;width:20px;height:20px;color:var(--lime)}
@@ -443,12 +442,12 @@ footer img{height:30px;width:auto}
 
   /* topo: título, botões, números, cartão */
   .hero{min-height:0;padding-top:100px}
-  .hero::before{background:linear-gradient(180deg,rgba(10,10,11,.35) 0%,rgba(10,10,11,.7) 38%,rgba(10,10,11,.92) 62%,var(--ink) 100%)}
+  .hero::before{background:linear-gradient(180deg,rgba(10,10,11,.45) 0%,rgba(10,10,11,.86) 22%,rgba(10,10,11,.94) 55%,var(--ink) 100%)}
+  .hero-vid video{filter:brightness(.8) saturate(.9)}
   .hero-grid{padding-bottom:40px}
-  .hero h1{font-size:clamp(42px,12.1vw,58px);letter-spacing:-.05em;margin:18px 0}
+  .hero h1{font-size:clamp(42px,12.1vw,58px);letter-spacing:-.05em;margin:0 0 18px}
   .hero .lead{margin-bottom:26px}
   .d-only{display:none}
-  .eyebrow{font-size:11.5px;letter-spacing:.14em}
   .hero-ctas .btn{width:100%}
   .stats{grid-template-columns:1fr 1fr;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid var(--line);border-radius:16px;margin:0 16px}
   .stat{padding:20px 16px}
@@ -456,9 +455,17 @@ footer img{height:30px;width:auto}
   .stat:nth-child(3){border-left:0}
   .stat:nth-child(n+3){border-top:1px solid var(--line)}
   .stat b{font-size:30px;white-space:nowrap}
-  .holo-mobile{padding:56px 0 64px;display:flex;justify-content:center}
-  .holo-mobile .holo-stage{margin:0}
-  .holo-card{width:min(270px,72vw)}
+  .holo-mobile{padding:28px 16px 40px;display:flex;justify-content:center}
+  .holo-mobile .holo-stage{margin:0;width:100%}
+  .holo-mobile .holo-stage>div{width:100%}
+  .holo-card{width:100%;max-width:380px;margin:0 auto;aspect-ratio:16/9;border-radius:16px}
+  .holo-card .logo{height:20px;top:14px;left:14px}
+  .holo-card .code{top:14px;right:14px}
+  .holo-card .info{inset:auto 10px 10px 10px;padding:10px 14px;border-radius:11px}
+  .holo-card .info small{display:none}
+  .holo-card .info b{font-size:17px;margin:0}
+  .holo-card .info span{font-size:12px}
+  .holo-hint{display:none}
 
   .sec-head{flex-direction:column;align-items:flex-start;gap:24px;margin-bottom:36px}
   .lines{grid-template-columns:1fr 1fr}
@@ -468,14 +475,20 @@ footer img{height:30px;width:auto}
   .line-card h3{font-size:26px;padding-top:26px}
   .line-card p{font-size:13.5px}
 
-  /* materiais: carrossel */
+  /* materiais: grade de 2 colunas, um embaixo do outro */
   .filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:0 16px;width:calc(100% + 32px);scrollbar-width:none}
   .filters::-webkit-scrollbar{display:none}
-  .mats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:4px 16px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .mats::-webkit-scrollbar{display:none}
-  .mat{flex:0 0 78%;scroll-snap-align:center}
+  .mats{grid-template-columns:1fr 1fr;gap:10px}
+  .mat{padding:7px 7px 12px;gap:10px;border-radius:16px}
   .mat:hover{transform:none}
-  .swipe-hint{display:flex}
+  .mat .sw{border-radius:10px}
+  .mat .meta{padding:0 4px}
+  .mat .tag{font-size:9.5px;letter-spacing:.08em}
+  .mat h3{font-size:15px;margin:3px 0 0}
+  .mat p{display:none}
+  .mat .more{margin-top:8px;font-size:12.5px}
+  .mat .sw .badge-fx{left:6px;bottom:6px;padding:5px;font-size:0;gap:0}
+  .mat .sw .badge-fx svg{width:13px;height:13px}
 
   /* ficha: sobe de baixo como app */
   .sheet{padding:0;align-items:flex-end}
@@ -535,7 +548,6 @@ footer img{height:30px;width:auto}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Solo para distribuidores</span>
         <h1>
           <span class="l"><span>Vende lo que</span></span>
           <span class="l"><span class="holo-text">nadie más</span></span>
@@ -587,7 +599,6 @@ footer img{height:30px;width:auto}
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <span class="eyebrow">Portafolio</span>
         <h2>Cuatro líneas. Un solo proveedor. Un solo contenedor.</h2>
       </div>
       <p class="lead">Combina en el mismo pedido todo lo que tu empresa de comunicación visual necesita vender.</p>
@@ -626,7 +637,6 @@ footer img{height:30px;width:auto}
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <span class="eyebrow">Toca cada muestra</span>
         <h2>Materiales que hacen <span class="red">destacar</span> tu catálogo.</h2>
       </div>
       <div class="filters">
@@ -638,7 +648,6 @@ footer img{height:30px;width:auto}
       </div>
     </div>
     <div class="mats" id="mats"></div>
-    <div class="swipe-hint"><span>Desliza</span><i><b id="swipeBar"></b></i><span id="swipeCount">1/12</span></div>
   </div>
 </section>
 
@@ -685,8 +694,7 @@ footer img{height:30px;width:auto}
       </div>
     </div>
     <div class="rv">
-      <span class="eyebrow">Por qué PrimeSign</span>
-      <h2 style="margin-top:18px">Hablas directo con quien fabrica.</h2>
+      <h2>Hablas directo con quien fabrica.</h2>
       <div class="reasons">
         <div class="reason">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z" stroke="currentColor" stroke-width="2"/></svg></div>
@@ -714,7 +722,6 @@ footer img{height:30px;width:auto}
   <div class="wrap">
     <div class="sec-head rv">
       <div>
-        <span class="eyebrow">Cómo funciona</span>
         <h2>De tu registro al primer contenedor.</h2>
       </div>
     </div>
@@ -730,7 +737,6 @@ footer img{height:30px;width:auto}
 <section class="form-sec" id="registro">
   <div class="wrap form-grid">
     <div class="form-side rv">
-      <span class="eyebrow">Registro de distribuidores</span>
       <h2>Recibe el catálogo y los precios de fábrica.</h2>
       <p class="lead">Completa tus datos y un especialista de PrimeSign te contactará.</p>
       <ul class="checks">
@@ -815,7 +821,6 @@ footer img{height:30px;width:auto}
         <p class="sheet-hint" id="shHint"></p>
       </div>
       <div class="sheet-right">
-        <span class="eyebrow" id="shLine"></span>
         <h3 id="shName"></h3>
         <p id="shDesc"></p>
         <ul class="specs" id="shSpecs"></ul>
@@ -919,7 +924,6 @@ grid.innerHTML = MATS.map((m,i) => `
   <button class="mat" data-i="${i}" data-f="${m.f}" aria-label="Ver material ${m.n}">
     ${swatch(m)}
     <div class="meta">
-      <span class="tag">${TAG[m.f.split(" ")[0]]}</span>
       <h3>${m.n}</h3>
       <p>${m.d.split(". ")[0].replace(/\.$/, "")}.</p>
       <span class="more">Ver material <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1041,15 +1045,6 @@ document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () =
   grid.scrollLeft = 0; grid.dispatchEvent(new Event("scroll"));
 }));
 
-// barra do carrossel
-const bar = document.getElementById("swipeBar"), cnt = document.getElementById("swipeCount");
-grid.addEventListener("scroll", () => {
-  const vis = grid.querySelectorAll(".mat:not([hidden])").length;
-  const max = grid.scrollWidth - grid.clientWidth || 1, k = Math.min(1, grid.scrollLeft / max);
-  bar.style.left = (k * 80) + "%";
-  cnt.textContent = (Math.round(k * (vis - 1)) + 1) + "/" + vis;
-}, {passive:true});
-
 // ===== FICHA =====
 const sheet = document.getElementById("sheet"), panel = document.getElementById("shPanel");
 const $ = id => document.getElementById(id);
@@ -1063,7 +1058,6 @@ function fill(i){
   bigSw = $("shSw").firstElementChild;
   wireBig(bigSw, m);
   $("shHint").textContent = FXI[m.fx][1];
-  $("shLine").textContent = m.line;
   $("shName").textContent = m.n;
   $("shDesc").textContent = m.d;
   $("shSpecs").innerHTML = m.s.map(x => `<li>${CHECK}${x}</li>`).join("");
