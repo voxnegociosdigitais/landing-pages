@@ -144,15 +144,15 @@ section{padding:120px 0;position:relative}
 .conf{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
 .facade{position:relative;aspect-ratio:1400/933;border-radius:4px;overflow:hidden;background:#cfd7e3}
 .facade img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tint{position:absolute;inset:0;mix-blend-mode:multiply;background-size:cover;background-position:center;
-  -webkit-mask:url(img/fachada-alpha.png) center/cover no-repeat;mask:url(img/fachada-alpha.png) center/cover no-repeat;transition:opacity .45s,background-color .45s}
+.facade .ac{transition:opacity .6s ease}
+.facade .ac.hide{opacity:0}
 .facade .tag{position:absolute;left:12px;top:12px;font-family:var(--mono);font-size:12px;font-weight:600;padding:7px 10px;border-radius:3px;background:rgba(255,255,255,.94);color:var(--texto)}
 .facade .tag b{color:var(--verm);font-weight:600}
 .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .chip{display:grid;gap:8px;padding:8px;border-radius:4px;border:1.5px solid #dbe3f1;text-align:left;transition:border-color .2s,transform .2s;background:#fff;color:var(--texto)}
 .chip:hover{transform:translateY(-2px)}
 .chip.on{border-color:var(--azul);box-shadow:0 0 0 1.5px var(--azul)}
-.chip i{display:block;height:54px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(11,37,89,.12),inset 0 -10px 18px rgba(0,0,0,.08)}
+.chip i{display:block;height:54px;border-radius:2px;background-size:cover;background-position:center;box-shadow:inset 0 0 0 1px rgba(11,37,89,.12)}
 .chip b{font-size:13px;line-height:1.2}
 .conf-info{margin-top:16px;padding:18px;background:var(--gelo);border-left:4px solid var(--verm)}
 .conf-info h3{font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:22px;line-height:1}
@@ -403,12 +403,12 @@ footer img{height:22px;width:auto}
   <div class="wrap">
     <div class="conf-head">
       <h2 class="h">Pinta la <span class="r">fachada</span>.</h2>
-      <p class="lead">Toca un acabado y mira cómo queda en un edificio real. Así lo verán tus clientes.</p>
+      <p class="lead">Toca un acabado y mira cómo queda en un edificio real: misma luz, mismas sombras, mismas juntas. Así lo verán tus clientes.</p>
     </div>
     <div class="conf">
       <div class="facade" id="facade">
-        <img src="img/fachada.jpg" alt="Edificio revestido con paneles de ACM" width="1400" height="933">
-        <div class="tint" id="tint"></div>
+        <img class="ac" id="acA" src="img/acab/plata.jpg" alt="Edificio revestido con paneles de ACM" width="1400" height="933">
+        <img class="ac hide" id="acB" alt="" width="1400" height="933">
         <span class="tag" id="ftag"></span>
       </div>
       <div>
@@ -639,33 +639,41 @@ document.querySelectorAll("[data-count]").forEach(el => cio.observe(el));
 
 // ===== Configurador de fachada =====
 const FIN = [
-  {n:"Plata PVDF", c:null, sw:"linear-gradient(135deg,#e3e7ec,#a9b2bd 45%,#f3f5f7 60%,#9aa3ad)", g:"PVDF Kynar · 15 años", d:"El clásico de las fachadas modernas. Color metálico estable al sol."},
-  {n:"Azul", c:"#3f78db", sw:"#2f68cf", g:"PVDF · 15 años", d:"Color corporativo de alto impacto."},
-  {n:"Rojo", c:"#e1362e", sw:"#d9261f", g:"Poliéster · 5 / 10 años", d:"Ideal para marcas, retail y señalización."},
-  {n:"Champagne", c:"#d8bf8c", sw:"linear-gradient(135deg,#e6d3a8,#b99a5e 50%,#efe0bd)", g:"PVDF metálico · 15 años", d:"Tono metálico cálido para proyectos premium."},
-  {n:"Grafito", c:"#8a929c", sw:"linear-gradient(135deg,#8d959f,#5d6570)", g:"PVDF · 15 años", d:"Sobrio y elegante, combina con vidrio azul."},
-  {n:"Verde", c:"#5aa36b", sw:"#3f8f55", g:"PVDF · 15 años", d:"Para marcas que quieren destacar en la ciudad."},
-  {n:"Madera", t:"img/tex/madera.jpg", sw:"url(img/tex/madera.jpg) center/cover", g:"Acabado madera", d:"La calidez de la madera, sin mantenimiento."},
-  {n:"Mármol", t:"img/tex/marmol.jpg", sw:"url(img/tex/marmol.jpg) center/cover", g:"Acabado mármol", d:"Vetas de piedra con el peso del ACM."},
-  {n:"Cepillado", t:"img/tex/cepillado.jpg", sw:"url(img/tex/cepillado.jpg) center/cover", g:"Cepillado", d:"Textura metálica cepillada en plata, oro, azul y rojo."}
+  {k:"plata", n:"Plata PVDF", g:"PVDF Kynar · 15 años", d:"El clásico de las fachadas modernas. Color metálico estable al sol."},
+  {k:"azul", n:"Azul", g:"PVDF · 15 años", d:"Color corporativo de alto impacto."},
+  {k:"rojo", n:"Rojo", g:"Poliéster · 5 / 10 años", d:"Ideal para marcas, retail y señalización."},
+  {k:"champagne", n:"Champagne", g:"PVDF metálico · 15 años", d:"Tono metálico cálido para proyectos premium."},
+  {k:"grafito", n:"Grafito", g:"PVDF · 15 años", d:"Sobrio y elegante, combina con vidrio azul."},
+  {k:"roble", n:"Roble", g:"Acabado madera", d:"Veta de roble claro, con la resistencia del aluminio y sin mantenimiento."},
+  {k:"nogal", n:"Nogal", g:"Acabado madera", d:"Madera oscura y cálida para fachadas de alto padrón."},
+  {k:"marmol", n:"Mármol", g:"Acabado mármol", d:"Vetas de mármol blanco con el peso y la instalación del ACM."},
+  {k:"cepillado", n:"Cepillado", g:"Cepillado", d:"Aluminio cepillado de textura fina, en plata, oro, azul y rojo."}
 ];
 (() => {
-  const chips = $("chips"), tint = $("tint");
-  chips.innerHTML = FIN.map((f, i) => `<button class="chip" data-i="${i}" aria-pressed="false"><i style="background:${f.sw}"></i><b>${f.n}</b></button>`).join("");
+  const chips = $("chips"), A = $("acA"), B = $("acB");
+  const small = matchMedia("(max-width:700px)").matches;
+  const src = k => `img/acab/${k}${small ? "-m" : ""}.jpg`;
+  A.src = src("plata");
+  chips.innerHTML = FIN.map((f, i) => `<button class="chip" data-i="${i}" aria-pressed="false"><i style="background-image:url(img/acab/sw/${f.k}.jpg)"></i><b>${f.n}</b></button>`).join("");
+  let frente = A, atras = B, atual = -1, auto = true;
   function pick(i){
+    if (i === atual) return; atual = i;
     const f = FIN[i];
     chips.querySelectorAll(".chip").forEach((c, j) => { c.classList.toggle("on", j === i); c.setAttribute("aria-pressed", j === i); });
-    if (f.c === null && !f.t) tint.style.opacity = 0;
-    else { tint.style.opacity = 1; tint.style.backgroundImage = f.t ? `url(${f.t})` : "none"; tint.style.backgroundColor = f.t ? "transparent" : f.c; tint.style.backgroundSize = f.t ? "360px auto" : "cover"; tint.style.backgroundRepeat = "repeat"; }
     $("ftag").innerHTML = `ACM <b>${f.g.split(" ·")[0]}</b> · ${f.n}`;
     $("ciName").textContent = f.n; $("ciDesc").textContent = f.d; $("ciG").textContent = f.g;
+    const novo = src(f.k);
+    if (frente.getAttribute("src") === novo) return;
+    atras.onload = () => { atras.classList.remove("hide"); frente.classList.add("hide"); [frente, atras] = [atras, frente]; };
+    atras.alt = "Fachada con ACM " + f.n; atras.src = novo;
   }
   chips.addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) { auto = false; pick(+b.dataset.i); } });
   pick(0);
-  // na primeira vez que aparece, passa sozinho por algumas cores para mostrar que dá pra trocar
-  let auto = true;
+  // pré-carrega os outros acabados quando a seção chega perto
+  new IntersectionObserver(([en], o) => { if (!en.isIntersecting) return; o.disconnect(); FIN.forEach(f => { const im = new Image(); im.src = src(f.k); }); }, {rootMargin:"600px"}).observe($("facade"));
+  // na primeira vez que aparece, passa sozinho por alguns acabados para mostrar que dá pra trocar
   if (!reduce) new IntersectionObserver(([en], o) => { if (!en.isIntersecting) return; o.disconnect();
-    let k = 0; const seq = [2, 6, 1, 0]; const it = setInterval(() => { if (!auto) return clearInterval(it); pick(seq[k++]); if (k >= seq.length) clearInterval(it); }, 1000); }, {threshold:.6}).observe($("facade"));
+    let k = 0; const seq = [5, 7, 1, 0]; const it = setInterval(() => { if (!auto) return clearInterval(it); pick(seq[k++]); if (k >= seq.length) clearInterval(it); }, 1400); }, {threshold:.6}).observe($("facade"));
 })();
 
 // ===== Prueba de fuego =====
