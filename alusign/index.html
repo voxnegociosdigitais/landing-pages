@@ -160,15 +160,28 @@ section{position:relative;padding:130px 0}
 .plano .sheet{transition:all .6s var(--ease)}
 .med-note{font-size:14px;color:var(--muted);margin-top:18px}
 
-/* FÁBRICA: mosaico de trechos reais da fábrica */
+/* EXPORTAÇÃO: fotos reais da fábrica, do escritório e da carga */
 .fab{background:var(--noite);color:#fff}
-.fab-head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;margin-bottom:44px}
 .fab .lead{color:var(--muted-azul)}
-.mosaico{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.mosaico figure{position:relative;aspect-ratio:540/596;border-radius:18px;overflow:hidden;background:#0b2563}
-.mosaico video{width:100%;height:100%;object-fit:cover}
-.mosaico figcaption{position:absolute;left:12px;bottom:12px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:99px;background:rgba(6,25,74,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.fab-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:52px}
+.aerea{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:21/9;background:#0b2563}
+.aerea img{width:100%;height:100%;object-fit:cover}
+.aerea::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,25,74,0) 30%,rgba(6,25,74,.55) 60%,rgba(6,25,74,.94))}
+.aerea .txt{position:absolute;left:40px;right:40px;bottom:36px;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.aerea .lead{color:#dce6ff}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(180px,17vw,250px);gap:14px;margin-top:14px}
+.bento figure{position:relative;border-radius:18px;overflow:hidden;background:#0b2563}
+.bento figure.big{grid-column:span 2;grid-row:span 2}
+.bento img{width:100%;height:100%;object-fit:cover}
+.bento figcaption{position:absolute;left:12px;bottom:12px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:99px;background:rgba(6,25,74,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.bento .big figcaption{font-size:15px;padding:8px 14px;left:16px;bottom:16px}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;list-style:none;counter-reset:p}
+.pasos li{border-top:2px solid rgba(255,255,255,.18);padding-top:18px;counter-increment:p}
+.pasos li::before{content:"0" counter(p);display:block;font-size:14px;font-weight:600;color:var(--verm);margin-bottom:10px}
+.pasos b{display:block;font-size:20px;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.pasos span{display:block;margin-top:6px;font-size:15px;color:var(--muted-azul)}
+.pasos-t{font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.04em;margin-top:96px}
+.pasos-t + .pasos{margin-top:28px}
+.fab-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px;padding-top:34px;border-top:1px solid rgba(255,255,255,.14)}
 .fab-nums b{display:block;font-size:clamp(36px,3.8vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1}
 .fab-nums span{display:block;margin-top:8px;font-size:15px;color:#c9d6f6}
 
@@ -215,8 +228,9 @@ footer img{height:22px;width:auto}
 
 /* RESPONSIVO */
 @media (max-width:1020px){
-  .hero-grid,.fuego-head,.fab-head,.med-grid,.form-grid{grid-template-columns:1fr}
-  .mosaico{grid-template-columns:1fr 1fr}
+  .hero-grid,.fuego-head,.med-grid,.form-grid{grid-template-columns:1fr}
+  .aerea{aspect-ratio:16/10}
+  .aerea .txt{grid-template-columns:1fr;gap:14px}
   .top nav a:not(.btn){display:none}
   .corr-stick{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:4px;align-content:start;padding-top:18px}
   .corr-canvas{aspect-ratio:auto;height:40svh}
@@ -275,11 +289,21 @@ footer img{height:22px;width:auto}
   .med-grid>div:first-child>.t2{order:1}
   .med-grid>div:first-child>.lead{order:2;margin:16px 0 22px}
   .plano{order:3;padding:14px;border-radius:18px;aspect-ratio:1.2/1;margin-bottom:24px}
-  .fab-head{grid-template-columns:1fr;gap:16px;margin-bottom:26px}
-  .mosaico{grid-template-columns:1fr 1fr;gap:8px;margin:0 -4px}
-  .mosaico figure{border-radius:14px}
-  .mosaico figcaption{left:8px;bottom:8px;font-size:11.5px;padding:5px 9px}
-  .fab-nums{grid-template-columns:1fr 1fr;gap:22px 16px;margin-top:34px}
+  .aerea{aspect-ratio:4/5;border-radius:18px;margin:0 -4px}
+  .aerea .txt{left:18px;right:18px;bottom:22px;grid-template-columns:1fr;gap:12px}
+  .aerea .lead{font-size:15.5px}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:44vw;gap:8px;margin:8px -4px 0}
+  .bento figure{border-radius:14px}
+  .bento figure.big{grid-column:span 2;grid-row:span 1}
+  .bento figcaption{left:8px;bottom:8px;font-size:11.5px;padding:5px 9px}
+  .bento .big figcaption{font-size:13px;left:10px;bottom:10px}
+  .pasos-t{margin-top:64px;font-size:28px}
+  .pasos{grid-template-columns:1fr;gap:0;margin-top:18px}
+  .pasos li{display:grid;grid-template-columns:38px 1fr;column-gap:8px;padding:14px 0;border-top:1px solid rgba(255,255,255,.16)}
+  .pasos li::before{grid-row:span 2;margin:3px 0 0}
+  .pasos b{font-size:17px}
+  .pasos span{font-size:14px;margin-top:3px}
+  .fab-nums{grid-template-columns:1fr 1fr;gap:22px 16px;margin-top:48px}
   .fab-nums b{font-size:36px}
   .fab-nums span{font-size:14px}
   .fgrid{grid-template-columns:1fr}
@@ -432,19 +456,30 @@ footer img{height:22px;width:auto}
   </div>
 </section>
 
-<!-- FÁBRICA -->
+<!-- EXPORTAÇÃO: fábrica, escritório e carga reais -->
 <section class="fab" id="fabrica">
   <div class="wrap">
-    <div class="fab-head">
-      <h2 class="t2">Directo de la fábrica</h2>
-      <p class="lead">Compras con quien fabrica el panel, el núcleo y la pintura. Producción en hasta 15 días hábiles después de aprobar los colores.</p>
+    <div class="aerea">
+      <picture><source media="(max-width:700px)" srcset="img/real/aerea-m.jpg"><img src="img/real/aerea.jpg" alt="Vista aérea de la fábrica Alusignpanel en China" width="2000" height="1333" loading="lazy"></picture>
+      <div class="txt">
+        <h2 class="t2">Directo de la fábrica a tu puerto</h2>
+        <p class="lead">Compras con quien fabrica el panel, el núcleo y la pintura, y despacha en contenedor a toda América Latina.</p>
+      </div>
     </div>
-    <div class="mosaico">
-      <figure><video muted loop playsinline preload="none" poster="vid/fab/c1.jpg" data-src="vid/fab/c1.mp4"></video><figcaption>Bobinas prepintadas</figcaption></figure>
-      <figure><video muted loop playsinline preload="none" poster="vid/fab/c2.jpg" data-src="vid/fab/c2.mp4"></video><figcaption>Línea de producción</figcaption></figure>
-      <figure><video muted loop playsinline preload="none" poster="vid/fab/c3.jpg" data-src="vid/fab/c3.mp4"></video><figcaption>Despacho de láminas</figcaption></figure>
-      <figure><video muted loop playsinline preload="none" poster="vid/fab/c4.jpg" data-src="vid/fab/c4.mp4"></video><figcaption>Paneles terminados</figcaption></figure>
+    <div class="bento">
+      <figure class="big"><img src="img/real/container.jpg" alt="Carga de un contenedor de exportación en la fábrica" loading="lazy"><figcaption>Carga de contenedores</figcaption></figure>
+      <figure><img src="img/real/linea.jpg" alt="Línea de producción de paneles de ACM" loading="lazy"><figcaption>Línea de producción</figcaption></figure>
+      <figure><img src="img/real/lab.jpg" alt="Técnicos haciendo ensayos en el laboratorio de calidad" loading="lazy"><figcaption>Laboratorio de calidad</figcaption></figure>
+      <figure><img src="img/real/stock.jpg" alt="Láminas de ACM embaladas en el depósito" loading="lazy"><figcaption>Stock listo para despacho</figcaption></figure>
+      <figure><img src="img/real/oficinas.jpg" alt="Edificio de oficinas de la empresa" loading="lazy"><figcaption>Oficinas</figcaption></figure>
     </div>
+    <h3 class="pasos-t">Así llega a tu país</h3>
+    <ol class="pasos">
+      <li><b>Cotización en español</b><span>Catálogo, fichas técnicas y precios de fábrica.</span></li>
+      <li><b>Muestras y colores</b><span>Apruebas acabados, RAL o Pantone.</span></li>
+      <li><b>Producción</b><span>Hasta 15 días hábiles después de aprobar los colores.</span></li>
+      <li><b>Contenedor a tu puerto</b><span>Embalaje de exportación y carga en la fábrica.</span></li>
+    </ol>
     <div class="fab-nums">
       <div><b>6</b><span>líneas de ACM</span></div>
       <div><b>5.000</b><span>m²/día de corrugado</span></div>
@@ -673,10 +708,6 @@ document.querySelectorAll(".seg").forEach(seg => seg.addEventListener("click", e
   med[seg.dataset.k] = +b.dataset.v; desenhaPlano();
 }));
 desenhaPlano();
-
-// Vídeos da fábrica: cada um carrega e toca só quando aparece
-document.querySelectorAll(".mosaico video").forEach(v => new IntersectionObserver(([e]) => {
-  if (e.isIntersecting && !reduce) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }, {threshold:.2}).observe(v));
 
 // ===== Formulário =====
 if (!AL_LIVE) document.body.classList.add("preview");
