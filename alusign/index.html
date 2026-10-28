@@ -115,6 +115,14 @@ section{position:relative;padding:130px 0}
 .cmp-l.l{left:20px}.cmp-l.r{right:20px}
 .cmp-h{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 12px rgba(6,25,74,.35)}
 .cmp-h::after{content:"";position:absolute;top:50%;left:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='14' fill='none'%3E%3Cpath d='M7 1 1 7l6 6M19 1l6 6-6 6' stroke='%230a3ea6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat;box-shadow:0 8px 24px rgba(6,25,74,.35)}
+.mj{margin-top:40px;padding:28px 30px;border-radius:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.mj-t{font-size:18px;font-weight:600;margin-bottom:18px}
+.mj-r{display:grid;grid-template-columns:130px 1fr 96px;gap:16px;align-items:center;padding:8px 0;font-size:15px;color:#dbe5ff}
+.mj-r i{display:block;height:14px;border-radius:99px;background:var(--verm);width:0;transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.mj-r.a2 i{background:#fff}
+.mj.on .mj-r i{width:var(--w)}
+.mj-r b{font-size:18px;font-weight:700;text-align:right;color:#fff;white-space:nowrap}
+.mj-n{margin-top:14px;font-size:13px;color:var(--muted-azul)}
 .vs2{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
 .vs2 h3{font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1}
 .vs2 h3 small{display:block;font-size:15px;font-weight:500;letter-spacing:0;color:var(--muted-azul);margin-top:6px}
@@ -261,7 +269,8 @@ footer img{height:22px;width:auto}
   .stats .lb{font-size:14px;margin-top:8px}
   .fuego-head{margin-bottom:26px;gap:16px}
   .cmp{aspect-ratio:4/3.6;border-radius:18px;margin:0 -4px}
-  .cmp img{object-position:50% 50%}
+  .cmp img{object-position:82% 50%}
+  .mj{padding:22px 18px}.mj-r{grid-template-columns:96px 1fr 78px;gap:10px;font-size:14px}.mj-r b{font-size:15px}
   .cmp-l{top:12px;font-size:13px;padding:6px 11px}
   .cmp-l.l{left:12px}.cmp-l.r{right:12px}
   .cmp-h::after{width:44px;height:44px;margin:-22px 0 0 -22px}
@@ -369,13 +378,19 @@ footer img{height:22px;width:auto}
   <div class="wrap">
     <div class="fuego-head">
       <h2 class="t2">El núcleo sí importa</h2>
-      <p class="lead">Por fuera son iguales. Desliza y mira por dentro: el PE es plástico, el FR A2 es mineral y prácticamente incombustible.</p>
+      <p class="lead">Por fuera son iguales. Desliza sobre la pila y mira el borde: el PE es plástico, el FR A2 es mineral y casi no tiene qué quemar.</p>
     </div>
     <div class="cmp" id="cmp">
-      <img class="b" src="img/nucleo2-a2.jpg" alt="Borde de un panel Alusignpanel con núcleo mineral FR A2, de color blanco" width="1800" height="1000" loading="lazy">
-      <img class="a" src="img/nucleo2-pe.jpg" alt="Borde del mismo panel con núcleo PE negro" width="1800" height="1000" loading="lazy">
+      <img class="b" src="img/pilha-a2.jpg" alt="Pila de paneles Alusignpanel con núcleo mineral FR A2, vista por el borde cortado" width="1800" height="1000" loading="lazy">
+      <img class="a" src="img/pilha-pe.jpg" alt="La misma pila de paneles con núcleo PE negro" width="1800" height="1000" loading="lazy">
       <span class="cmp-l l">Núcleo PE</span><span class="cmp-l r">Núcleo FR A2</span>
       <div class="cmp-h" role="slider" tabindex="0" aria-label="Comparar núcleo PE y FR A2" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+    </div>
+    <div class="mj" id="mj">
+      <p class="mj-t">Energía que libera al quemarse</p>
+      <div class="mj-r"><span>Núcleo PE</span><i style="--w:100%"></i><b>~43 MJ/kg</b></div>
+      <div class="mj-r a2"><span>Núcleo FR A2</span><i style="--w:7%"></i><b>≤ 3 MJ/kg</b></div>
+      <p class="mj-n">Poder calorífico del núcleo. El límite para clase A2 (EN 13501-1) es 3 MJ/kg.</p>
     </div>
     <div class="vs2">
       <div><h3>PE<small>núcleo de polietileno</small></h3><ul><li>Se quema y gotea</li><li>Liviano y económico</li><li>Señalización, decoración e interiores</li></ul></div>
@@ -645,6 +660,7 @@ const FIN = [
   c.addEventListener("pointerup", solta); c.addEventListener("pointercancel", solta);
   h.addEventListener("keydown", e => { const x = parseFloat(c.style.getPropertyValue("--x")) || 50; if (e.key === "ArrowLeft") set(x - 5); if (e.key === "ArrowRight") set(x + 5); });
   set(50);
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { $("mj").classList.add("on"); o.disconnect(); } }, {threshold:.5}).observe($("mj"));
 })();
 
 // ===== Corrugado: quadros avançam com a rolagem =====
