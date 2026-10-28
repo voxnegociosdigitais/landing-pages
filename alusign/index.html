@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alusignpanel | Paneles de ACM directo de fábrica</title>
+<meta name="description" content="Paneles de aluminio compuesto (ACM) directo de la fábrica Alusignpanel: PVDF, núcleo FR A2, corrugado YBOND y 26 años de experiencia. Registro para distribuidores en América Latina.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a3ea6">
+<link rel="icon" href="img/logo-color.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<!--
+  CONFIG DE PRODUÇÃO (ver README.md)
+  - GTM só carrega no domínio real, pra prévia não sujar o pixel.
+  - O formulário envia pro mesmo receptor do Elementor que existe hoje (post 12, form 46caa97),
+    então o caminho até o CRM não muda. Na prévia ele NÃO envia nada.
+-->
+<script>
+  window.AL_CONFIG = {
+    liveHost: "alusignpanellatam.com",
+    gtm: "GTM-N9LH6PNJ",
+    formEndpoint: "https://alusignpanellatam.com/wp-admin/admin-ajax.php",
+    elementor: { post_id: "12", form_id: "46caa97", queried_id: "12" }
+  };
+  window.AL_LIVE = location.hostname.replace(/^www\./, "") === AL_CONFIG.liveHost;
+  if (AL_LIVE) {
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',AL_CONFIG.gtm);
+  }
+</script>
+
+<style>
+/* Conceito: "planta técnica". Azul Alusign com grade de desenho técnico, alumínio de verdade e cotas em vermelho.
+   Tipografia larga (Archivo Expanded) para títulos, mono para cotas e medidas. Sem preto. */
+:root{
+  --azul:#0a3ea6;
+  --azul-esc:#072c7a;
+  --azul-claro:#e9f0fd;
+  --linha:rgba(255,255,255,.14);
+  --linha-2:rgba(255,255,255,.06);
+  --verm:#ee2a24;
+  --branco:#fff;
+  --gelo:#f3f6fb;
+  --texto:#0b2559;
+  --muted:#51668f;
+  --muted-azul:#b8cbf4;
+  --display:"Archivo",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --wrap:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--display);background:var(--azul);color:var(--branco);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.h{font-stretch:125%;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.92;text-wrap:balance}
+h2.h{font-size:clamp(38px,6.2vw,84px)}
+.r{color:var(--verm)}
+.lead{font-size:clamp(16.5px,1.4vw,19px);max-width:56ch}
+.mono{font-family:var(--mono);font-weight:500;letter-spacing:.02em}
+.blue{background:var(--azul);color:#fff}
+.blue .lead{color:var(--muted-azul)}
+.light{background:var(--branco);color:var(--texto)}
+.light .lead{color:var(--muted)}
+.ice{background:var(--gelo);color:var(--texto)}
+.ice .lead{color:var(--muted)}
+/* grade de planta técnica */
+.grid-bp{background-image:
+  linear-gradient(var(--linha-2) 1px,transparent 1px),linear-gradient(90deg,var(--linha-2) 1px,transparent 1px),
+  linear-gradient(var(--linha) 1px,transparent 1px),linear-gradient(90deg,var(--linha) 1px,transparent 1px);
+  background-size:24px 24px,24px 24px,120px 120px,120px 120px;background-position:-1px -1px}
+section{padding:120px 0;position:relative}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--verm);color:#fff;font-weight:700;font-size:17px;padding:19px 28px;border-radius:4px;transition:transform .25s var(--ease),box-shadow .25s;box-shadow:6px 6px 0 rgba(7,44,122,.55);text-align:center}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 rgba(7,44,122,.55)}
+.btn:disabled{opacity:.75;cursor:default}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-w{background:#fff;color:var(--azul)}
+
+/* HEADER */
+.top{position:fixed;inset:0 0 auto 0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .3s,box-shadow .3s}
+.top.scrolled{background:rgba(10,62,166,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--linha)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.top img{height:26px;width:auto}
+.top nav{display:flex;align-items:center;gap:28px;font-weight:600;font-size:14.5px}
+.top nav a:not(.btn){color:var(--muted-azul);transition:color .2s}
+.top nav a:not(.btn):hover{color:#fff}
+.top .btn{padding:11px 18px;font-size:14px;box-shadow:none}
+
+/* HERO */
+.hero{min-height:100svh;padding:120px 0 0;display:flex;flex-direction:column;overflow:hidden}
+.hero-grid{flex:1;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(52px,7.6vw,118px)}
+.hero h1>span{display:block}
+.hero .lead{margin:26px 0 34px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px}
+
+/* amostra de alumínio (assinatura da página) */
+.stage{position:relative;perspective:1200px;display:flex;justify-content:center;padding:40px 30px 80px}
+.sample{--rx:8deg;--ry:-18deg;--mx:30%;position:relative;width:min(360px,74vw);aspect-ratio:1220/1700;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .2s linear}
+.face{position:absolute;inset:0;border-radius:2px;overflow:hidden;
+  background:
+   repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 1px,rgba(255,255,255,.22) 1px 2px,rgba(0,0,0,.05) 2px 3px),
+   linear-gradient(100deg,#8e98a5 0%,#cfd6de calc(var(--mx) - 22%),#ffffff var(--mx),#c3cad3 calc(var(--mx) + 18%),#8f99a6 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.4),0 40px 80px -30px rgba(3,18,60,.8)}
+.face::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at var(--mx) 30%,rgba(255,255,255,.35),transparent 60%);mix-blend-mode:overlay}
+.face .film{position:absolute;left:8%;top:6%;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(10,62,166,.55);white-space:nowrap}
+.face .film b{color:rgba(238,42,36,.65)}
+/* espessura: bordas com as camadas (alumínio, núcleo, alumínio) */
+.edge{position:absolute;top:0;right:0;width:22px;height:100%;transform-origin:right;transform:rotateY(90deg) translateX(11px);
+  background:linear-gradient(90deg,#d5dbe2 0 3px,#253041 3px 19px,#c4cbd3 19px 22px);transition:background .4s}
+.edge.a2{background:linear-gradient(90deg,#d5dbe2 0 3px,#f1efe9 3px 19px,#c4cbd3 19px 22px)}
+.edge-b{position:absolute;left:0;bottom:0;width:100%;height:22px;transform-origin:bottom;transform:rotateX(-90deg) translateY(11px);
+  background:linear-gradient(180deg,#d5dbe2 0 3px,#253041 3px 19px,#c4cbd3 19px 22px);transition:background .4s}
+.edge-b.a2{background:linear-gradient(180deg,#d5dbe2 0 3px,#f1efe9 3px 19px,#c4cbd3 19px 22px)}
+/* cotas em vermelho, como em planta */
+.cota{position:absolute;font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;pointer-events:none}
+.cota.w{left:0;right:0;top:-30px;justify-content:center}
+.cota.w::before,.cota.w::after{content:"";flex:1;height:1.5px;background:var(--verm)}
+.cota.l{top:0;bottom:0;left:-46px;writing-mode:vertical-rl;transform:rotate(180deg);justify-content:center}
+.cota.l::before,.cota.l::after{content:"";flex:1;width:1.5px;background:var(--verm)}
+.cota span{background:var(--verm);padding:3px 7px;border-radius:2px}
+.callouts{position:absolute;right:-6px;top:46%;display:grid;gap:8px;font-family:var(--mono);font-size:11.5px;color:var(--muted-azul)}
+.callouts div{display:flex;align-items:center;gap:8px}
+.callouts div::before{content:"";width:26px;height:1px;background:var(--verm)}
+.callouts b{color:#fff;font-weight:600}
+.nucleo-tg{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:flex;gap:4px;padding:4px;border-radius:5px;background:rgba(7,44,122,.75);border:1px solid var(--linha);font-family:var(--mono);font-size:12px;white-space:nowrap}
+.nucleo-tg button{padding:8px 12px;border-radius:3px;color:var(--muted-azul);font-weight:600}
+.nucleo-tg button.on{background:#fff;color:var(--azul)}
+
+.hero-nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--linha)}
+.hero-nums div{padding:24px 24px 28px;border-left:1px solid var(--linha)}
+.hero-nums div:first-child{border-left:0;padding-left:0}
+.hero-nums b{display:block;font-stretch:125%;font-weight:800;font-size:clamp(34px,3.8vw,52px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hero-nums span{display:block;margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--muted-azul);text-transform:uppercase;letter-spacing:.06em}
+
+/* CONFIGURADOR DE FACHADA */
+.conf-head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:40px}
+.conf{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+.facade{position:relative;aspect-ratio:1400/933;border-radius:4px;overflow:hidden;background:#cfd7e3}
+.facade img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tint{position:absolute;inset:0;mix-blend-mode:multiply;background-size:cover;background-position:center;
+  -webkit-mask:url(img/fachada-alpha.png) center/cover no-repeat;mask:url(img/fachada-alpha.png) center/cover no-repeat;transition:opacity .45s,background-color .45s}
+.facade .tag{position:absolute;left:12px;top:12px;font-family:var(--mono);font-size:12px;font-weight:600;padding:7px 10px;border-radius:3px;background:rgba(255,255,255,.94);color:var(--texto)}
+.facade .tag b{color:var(--verm);font-weight:600}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.chip{display:grid;gap:8px;padding:8px;border-radius:4px;border:1.5px solid #dbe3f1;text-align:left;transition:border-color .2s,transform .2s;background:#fff;color:var(--texto)}
+.chip:hover{transform:translateY(-2px)}
+.chip.on{border-color:var(--azul);box-shadow:0 0 0 1.5px var(--azul)}
+.chip i{display:block;height:54px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(11,37,89,.12),inset 0 -10px 18px rgba(0,0,0,.08)}
+.chip b{font-size:13px;line-height:1.2}
+.conf-info{margin-top:16px;padding:18px;background:var(--gelo);border-left:4px solid var(--verm)}
+.conf-info h3{font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:22px;line-height:1}
+.conf-info p{font-size:14.5px;color:var(--muted);margin-top:6px}
+.conf-info .g{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--azul)}
+
+/* PRUEBA DE FUEGO */
+.fuego-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.lab{position:relative;border-radius:4px;overflow:hidden;background:#06265f;border:1px solid var(--linha)}
+.probes{display:grid;grid-template-columns:1fr 1fr}
+.probe{position:relative;aspect-ratio:3/4;overflow:hidden;border-right:1px solid var(--linha)}
+.probe:last-child{border-right:0}
+.probe .pan{position:absolute;left:20%;right:20%;top:14%;bottom:20%;border-radius:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 1px,rgba(255,255,255,.2) 1px 2px),linear-gradient(100deg,#9aa4b0,#e9edf1 45%,#aeb7c2)}
+.probe .core{position:absolute;right:-14px;top:3px;bottom:-3px;width:14px;background:linear-gradient(90deg,#d5dbe2 0 2px,var(--core) 2px 12px,#c4cbd3 12px 14px);transform:skewY(-30deg);transform-origin:left top}
+.probe .burn{position:absolute;inset:0;background:radial-gradient(70% 65% at 50% 100%,rgba(35,16,6,.96),rgba(70,34,10,.8) 38%,rgba(110,62,20,.3) 62%,transparent 76%);opacity:0;transition:opacity .25s}
+.probe canvas{position:absolute;inset:0;width:100%;height:100%}
+.probe .lbl{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 9px;border-radius:3px;background:rgba(255,255,255,.12);border:1px solid var(--linha)}
+.probe .res{position:absolute;left:10px;right:10px;bottom:10px;font-family:var(--mono);font-size:12.5px;font-weight:600;padding:9px 8px;border-radius:3px;text-align:center;opacity:0;transform:translateY(8px);transition:all .4s}
+.probe .res.on{opacity:1;transform:none}
+.probe.pe .res{background:var(--verm)}
+.probe.a2 .res{background:#fff;color:var(--azul)}
+.lab-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-top:1px solid var(--linha)}
+.lab-bar .t{font-family:var(--mono);font-size:13px;color:var(--muted-azul);font-variant-numeric:tabular-nums}
+.lab-bar .btn{padding:14px 20px;font-size:15px;box-shadow:none}
+.fuego h2{margin-bottom:22px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linha);border:1px solid var(--linha);margin-top:30px}
+.vs div{padding:18px;background:var(--azul)}
+.vs h3{font-stretch:125%;font-weight:800;font-size:20px;text-transform:uppercase;margin-bottom:8px}
+.vs p{font-size:14.5px;color:var(--muted-azul)}
+.certs{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.certs span{font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 10px;border:1px solid var(--linha);border-radius:3px}
+
+/* CORRUGADO */
+.corr-track{height:280vh;position:relative}
+.corr-stick{position:sticky;top:74px;height:calc(100svh - 74px);display:grid;grid-template-columns:.85fr 1.15fr;gap:36px;align-items:center}
+.corr-text .lead{margin:20px 0 24px}
+.capas{list-style:none;display:grid;border-top:1px solid #d5deee}
+.capas li{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #d5deee;opacity:.35;transition:opacity .4s}
+.capas li.on{opacity:1}
+.capas .mm{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--azul)}
+.capas li.on .mm{color:var(--verm)}
+.capas b{display:block;font-size:16px}
+.capas small{display:block;font-size:13.5px;color:var(--muted)}
+.corr-canvas{position:relative;width:100%;aspect-ratio:4/3}
+.corr-canvas canvas{width:100%;height:100%}
+.peso{display:grid;grid-template-columns:repeat(3,1fr);margin-top:22px;border:1px solid #d5deee;border-radius:3px;overflow:hidden}
+.peso div{padding:12px 14px;border-left:1px solid #d5deee;background:#fff}
+.peso div:first-child{border-left:0}
+.peso b{display:block;font-stretch:125%;font-weight:800;font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+.peso b small{font-size:13px}
+.peso span{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:6px;text-transform:uppercase}
+.peso .best{background:var(--azul);color:#fff}
+.peso .best span{color:var(--muted-azul)}
+
+/* MEDIDAS */
+.med-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
+.med-grid .lead{margin:20px 0 28px}
+.opt{margin-bottom:18px}
+.opt p{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-azul);margin-bottom:8px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{padding:11px 15px;border-radius:3px;border:1px solid var(--linha);font-family:var(--mono);font-weight:600;font-size:14px;color:#fff;transition:all .2s}
+.seg button:hover{border-color:#fff}
+.seg button.on{background:#fff;color:var(--azul);border-color:#fff}
+.med-out{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--linha);margin-top:24px}
+.med-out div{padding:14px;border-left:1px solid var(--linha)}
+.med-out div:first-child{border-left:0}
+.med-out b{display:block;font-stretch:125%;font-weight:800;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.med-out span{display:block;font-family:var(--mono);font-size:11px;color:var(--muted-azul);margin-top:6px;text-transform:uppercase}
+.plano{position:relative;width:100%;aspect-ratio:1/1}
+.plano svg{width:100%;height:100%;overflow:visible}
+.plano .sheet{transition:all .55s var(--ease)}
+.med-note{font-family:var(--mono);font-size:12px;color:var(--muted-azul);margin-top:14px}
+
+/* FÁBRICA (vídeo) */
+.fab{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden;padding:0}
+.fab video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fab::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,62,166,.2) 0%,rgba(10,62,166,.5) 45%,rgba(7,44,122,.96) 100%)}
+.fab .wrap{position:relative;z-index:2;padding-bottom:70px;padding-top:140px}
+.fab .lead{margin:20px 0 34px;color:#dbe6ff}
+.fab-nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.3)}
+.fab-nums div{padding:22px 22px 0;border-left:1px solid rgba(255,255,255,.3)}
+.fab-nums div:first-child{border-left:0;padding-left:0}
+.fab-nums b{display:block;font-stretch:125%;font-weight:800;font-size:clamp(30px,3.4vw,48px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.fab-nums span{display:block;margin-top:8px;font-family:var(--mono);font-size:12px;color:#c9d8fb;text-transform:uppercase}
+
+/* FORM */
+.form-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+.form-side .lead{margin:20px 0}
+.moq{margin-top:22px;border:1px solid #d5deee;border-radius:3px;overflow:hidden}
+.moq div{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border-top:1px solid #d5deee;font-size:15px;background:#fff}
+.moq div:first-child{border-top:0;font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;color:var(--muted);background:var(--gelo)}
+.moq b{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.card{background:#fff;border-radius:4px;padding:36px;box-shadow:12px 12px 0 var(--azul)}
+.card h3{font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:28px;line-height:1}
+.card .sub{font-size:15px;color:var(--muted);margin:8px 0 24px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.full{grid-column:1/-1}
+.f label{font-size:14px;font-weight:600}
+.f input,.f select{width:100%;font:inherit;font-size:16px;color:var(--texto);background:var(--gelo);border:1.5px solid #d5deee;border-radius:3px;padding:14px 15px;outline:none;transition:border-color .2s,background .2s;appearance:none;-webkit-appearance:none}
+.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%2351668f' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:40px}
+.f select:invalid{color:#8494b3}
+.f input:focus,.f select:focus{border-color:var(--azul);background:#fff}
+.f.err input,.f.err select{border-color:var(--verm);background:#fff6f5}
+.form-foot{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.form-foot .btn{width:100%}
+.form-foot small{font-size:13px;color:var(--muted);text-align:center}
+.form-msg{display:none;text-align:center;padding:40px 10px}
+.form-msg.on{display:block}
+.form-msg .ok{width:68px;height:68px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:var(--azul-claro);color:var(--azul)}
+.form-msg .ok svg{width:32px;height:32px}
+.form-msg p{color:var(--muted);margin-top:8px}
+.form-err{display:none;margin-top:12px;font-size:14px;color:var(--verm);text-align:center}
+.preview-flag{display:none;margin-bottom:18px;font-size:13px;font-weight:600;padding:9px 12px;border-radius:3px;background:#fff6dc;color:#8a5a00}
+.preview .preview-flag{display:block}
+
+footer{padding:34px 0;border-top:1px solid var(--linha)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--mono);font-size:12px;color:var(--muted-azul)}
+footer img{height:22px;width:auto}
+
+:focus-visible{outline:3px solid var(--verm);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* RESPONSIVO */
+@media (max-width:1020px){
+  .hero-grid,.fuego-grid,.med-grid,.form-grid,.conf-head,.conf{grid-template-columns:1fr}
+  .top nav a:not(.btn){display:none}
+  .corr-stick{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:6px;align-content:start;padding-top:12px}
+  .corr-canvas{aspect-ratio:auto;height:40svh}
+}
+@media (max-width:640px){
+  .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  section{padding:84px 0}
+  .top .wrap{height:62px}
+  .top img{height:21px}
+  .top .btn{padding:9px 13px;font-size:13px}
+  .hero{min-height:0;padding-top:96px}
+  .hero h1{font-size:clamp(40px,11.6vw,52px)}
+  .hero .lead{margin:16px 0 24px}
+  .hero-ctas .btn{width:100%}
+  .stage{padding:48px 30px 70px 56px}
+  .sample{width:min(230px,58vw)}
+  .callouts{display:none}
+  .hero-nums{grid-template-columns:1fr 1fr}
+  .hero-nums div{padding:18px 14px 20px}
+  .hero-nums div:nth-child(3){border-left:0;padding-left:0}
+  .hero-nums div:nth-child(n+3){border-top:1px solid var(--linha)}
+  .hero-nums b{font-size:32px}
+  .hero-nums span{font-size:11px}
+  .conf-head{margin-bottom:22px;gap:12px}
+  .facade{position:sticky;top:62px;z-index:3;border-radius:0;margin:0 -16px}
+  .chips{gap:7px;margin-top:12px}
+  .chip{padding:6px;gap:6px}
+  .chip i{height:44px}
+  .chip b{font-size:12px}
+  .conf-info{padding:14px}
+  .vs div{padding:14px}
+  .vs h3{font-size:17px}
+  .vs p{font-size:13px}
+  .lab-bar{flex-direction:column-reverse;align-items:stretch}
+  .lab-bar .t{text-align:center}
+  .corr-track{height:300vh}
+  .corr-stick{top:62px;height:calc(100svh - 62px)}
+  .corr-text .lead{display:none}
+  .corr-text h2.h{font-size:32px}
+  .capas li{grid-template-columns:48px 1fr;padding:7px 0}
+  .capas b{font-size:13.5px}
+  .capas small{display:none}
+  .peso{margin-top:10px}
+  .peso div{padding:9px 10px}
+  .peso b{font-size:20px}
+  .peso span{font-size:9.5px}
+  .corr-canvas{height:34svh}
+  .med-out b{font-size:22px}
+  .med-out div{padding:10px}
+  .plano{max-width:330px;margin:0 auto}
+  .fab{min-height:88svh}
+  .fab-nums{grid-template-columns:1fr 1fr}
+  .fab-nums div{padding:16px 12px 14px}
+  .fab-nums div:nth-child(3){border-left:0;padding-left:0}
+  .fab-nums div:nth-child(n+3){border-top:1px solid rgba(255,255,255,.3)}
+  .fab-nums b{font-size:28px}
+  .fgrid{grid-template-columns:1fr}
+  .card{padding:24px 18px;box-shadow:8px 8px 0 var(--azul)}
+  footer .wrap{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a href="#"><img src="img/logo-white.png" alt="Alusignpanel" width="351" height="81"></a>
+    <nav>
+      <a href="#fachada">Acabados</a>
+      <a href="#fuego">FR A2</a>
+      <a href="#corrugado">Corrugado</a>
+      <a href="#medidas">Medidas</a>
+      <a class="btn" href="#registro">Ser distribuidor</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero blue grid-bp" style="padding-bottom:0">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="h"><span>La piel de</span><span>los edificios<span class="r">.</span></span></h1>
+      <p class="lead">Paneles de aluminio compuesto directo de la fábrica Alusignpanel, con 26 años produciendo ACM. Para distribuidores e importadores de América Latina.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="#registro">Quiero distribuir Alusignpanel
+          <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn-w" href="#fachada">Pinta una fachada</a>
+      </div>
+    </div>
+    <div class="stage" id="stage">
+      <div class="sample" id="sample">
+        <div class="face"><span class="film">ALUSIGN<b>PANEL</b>® · PVDF · RAL 9006</span></div>
+        <div class="edge" id="edgeR"></div>
+        <div class="edge-b" id="edgeB"></div>
+        <div class="cota w"><span>1220 mm</span></div>
+        <div class="cota l"><span>2440 mm</span></div>
+      </div>
+      <div class="callouts">
+        <div><span><b>0,50 mm</b> aluminio + PVDF</span></div>
+        <div><span><b>3,00 mm</b> núcleo</span></div>
+        <div><span><b>0,50 mm</b> aluminio</span></div>
+      </div>
+      <div class="nucleo-tg" role="group" aria-label="Núcleo de la muestra">
+        <button class="on" data-n="pe">Núcleo PE</button><button data-n="a2">Núcleo FR A2</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-nums">
+      <div><b data-count="26">0</b><span>años de fábrica</span></div>
+      <div><b data-count="32000">0</b><span>m² por día</span></div>
+      <div><b data-count="15">0</b><span>años de garantía PVDF</span></div>
+      <div><b data-count="9">0</b><span>familias de acabado</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIGURADOR DE FACHADA -->
+<section class="light" id="fachada">
+  <div class="wrap">
+    <div class="conf-head">
+      <h2 class="h">Pinta la <span class="r">fachada</span>.</h2>
+      <p class="lead">Toca un acabado y mira cómo queda en un edificio real. Así lo verán tus clientes.</p>
+    </div>
+    <div class="conf">
+      <div class="facade" id="facade">
+        <img src="img/fachada.jpg" alt="Edificio revestido con paneles de ACM" width="1400" height="933">
+        <div class="tint" id="tint"></div>
+        <span class="tag" id="ftag"></span>
+      </div>
+      <div>
+        <div class="chips" id="chips"></div>
+        <div class="conf-info"><h3 id="ciName"></h3><p id="ciDesc"></p><span class="g" id="ciG"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRUEBA DE FUEGO -->
+<section class="blue grid-bp fuego" id="fuego">
+  <div class="wrap fuego-grid">
+    <div class="lab">
+      <div class="probes">
+        <div class="probe pe" style="--core:#253041"><div class="pan"><div class="core"></div></div><div class="burn"></div><canvas></canvas><span class="lbl">Núcleo PE</span><span class="res">Se quema y gotea</span></div>
+        <div class="probe a2" style="--core:#f1efe9"><div class="pan"><div class="core"></div></div><div class="burn"></div><canvas></canvas><span class="lbl">Núcleo FR A2</span><span class="res">No propaga la llama</span></div>
+      </div>
+      <div class="lab-bar"><span class="t" id="fuegoT">00,0 s</span><button class="btn" id="fuegoBtn">Encender la llama</button></div>
+    </div>
+    <div>
+      <h2 class="h">El núcleo <span class="r">sí</span> importa.</h2>
+      <p class="lead">Por fuera los dos paneles son iguales. Adentro, el núcleo PE es plástico. El FR A2 es mineral y prácticamente incombustible, con baja emisión de humo.</p>
+      <div class="vs">
+        <div><h3>PE</h3><p>Liviano y económico. Señalización, decoración y uso interior.</p></div>
+        <div><h3>FR A2</h3><p>Hospitales, escuelas, shoppings, aeropuertos y edificios altos.</p></div>
+      </div>
+      <div class="certs"><span>GB/T 8627 · A2</span><span>DIN 4102 · A2</span><span>NF F16-101 · M0</span><span>SGS</span><span>CE</span><span>UL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CORRUGADO -->
+<section class="ice" id="corrugado" style="padding:0">
+  <div class="corr-track" id="corrTrack">
+    <div class="wrap corr-stick">
+      <div class="corr-text">
+        <h2 class="h">YBOND: núcleo <span class="r">corrugado</span>.</h2>
+        <p class="lead">Un núcleo de aluminio ondulado en lugar de plástico. Resistencia al fuego A2, más rigidez y menos peso.</p>
+        <ul class="capas" id="capas">
+          <li data-at="0.15"><span class="mm">FILM</span><span><b>Película protectora</b><small>Se imprime con tu marca</small></span></li>
+          <li data-at="0.32"><span class="mm">0,50</span><span><b>Aluminio con PVDF</b><small>PVDF Kynar o poliéster</small></span></li>
+          <li data-at="0.5"><span class="mm">0,30</span><span><b>Núcleo corrugado A2</b><small>Aluminio ondulado</small></span></li>
+          <li data-at="0.66"><span class="mm">0,50</span><span><b>Aluminio de base</b><small>Cierra el panel</small></span></li>
+        </ul>
+        <div class="peso">
+          <div><b>8,1 <small>kg/m²</small></b><span>Aluminio 3 mm</span></div>
+          <div><b>5,5 <small>kg/m²</small></b><span>ACM 4 mm</span></div>
+          <div class="best"><b>3,7 <small>kg/m²</small></b><span>YBOND 4 mm</span></div>
+        </div>
+      </div>
+      <div class="corr-canvas"><canvas id="corrCanvas" aria-label="Panel YBOND abriéndose en capas"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIDAS -->
+<section class="blue grid-bp" id="medidas">
+  <div class="wrap med-grid">
+    <div>
+      <h2 class="h">Arma tu <span class="r">panel</span>.</h2>
+      <p class="lead">Elige ancho, largo y espesor. Mira el tamaño real de la lámina y cuánto rinde.</p>
+      <div class="opt"><p>Ancho (mm)</p><div class="seg" data-k="w"><button data-v="1220" class="on">1220</button><button data-v="1250">1250</button><button data-v="1500">1500</button></div></div>
+      <div class="opt"><p>Largo (mm)</p><div class="seg" data-k="l"><button data-v="2440" class="on">2440</button><button data-v="3050">3050</button><button data-v="5800">5800</button></div></div>
+      <div class="opt"><p>Espesor</p><div class="seg" data-k="e"><button data-v="2">2 mm</button><button data-v="3">3 mm</button><button data-v="4" class="on">4 mm</button><button data-v="5">5 mm</button><button data-v="6">6 mm</button></div></div>
+      <div class="med-out">
+        <div><b id="moA">2,98</b><span>m² por lámina</span></div>
+        <div><b id="moP">336</b><span>láminas / 1.000 m²</span></div>
+        <div><b id="moF">4'×8'</b><span>formato</span></div>
+      </div>
+      <p class="med-note">Recomendados 3 y 4 mm. Aluminio de 0,06 a 0,50 mm. Medidas especiales bajo pedido.</p>
+    </div>
+    <div class="plano" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs><linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9edf3"/><stop offset=".45" stop-color="#b7c1ce"/><stop offset=".55" stop-color="#f4f6f9"/><stop offset="1" stop-color="#a7b2c1"/></linearGradient></defs>
+        <rect class="sheet" id="pl" x="0" y="0" width="100" height="200" rx="2" fill="url(#gPanel)"/>
+        <rect class="sheet" id="plEdge" x="0" y="0" width="6" height="200" fill="#ee2a24"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="#ffffff">
+          <line class="sheet" id="dimW" stroke="#ee2a24" stroke-width="1.5"/>
+          <text class="sheet" id="tW" text-anchor="middle">1220 mm</text>
+          <line class="sheet" id="dimL" stroke="#ee2a24" stroke-width="1.5"/>
+          <text class="sheet" id="tL" text-anchor="middle">2440 mm</text>
+        </g>
+        <g id="persona" fill="#b8cbf4" opacity=".6"><circle cx="0" cy="0" r="9"/><rect x="-10" y="12" width="20" height="58" rx="8"/></g>
+        <text id="tP" font-family="IBM Plex Mono, monospace" font-size="11" fill="#b8cbf4" text-anchor="middle">1,75 m</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FÁBRICA -->
+<section class="fab" id="fabrica">
+  <video id="fabVid" muted loop playsinline preload="none" poster="vid/fabrica.jpg" data-src="vid/fabrica.mp4"></video>
+  <div class="wrap">
+    <h2 class="h">Directo de la <span class="r">fábrica</span>.</h2>
+    <p class="lead">Produces tu pedido con quien fabrica el panel, el núcleo y la pintura. Producción en hasta 15 días hábiles después de aprobar los colores.</p>
+    <div class="fab-nums">
+      <div><b>6</b><span>líneas de ACM</span></div>
+      <div><b>5.000</b><span>m²/día de corrugado</span></div>
+      <div><b>3</b><span>líneas de núcleo</span></div>
+      <div><b>RAL</b><span>y Pantone a medida</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="ice" id="registro">
+  <div class="wrap form-grid">
+    <div class="form-side">
+      <h2 class="h">Precios de <span class="r">fábrica</span>.</h2>
+      <p class="lead">Déjanos tus datos y un especialista de Alusignpanel te envía catálogo, fichas técnicas y precios, en español.</p>
+      <div class="moq">
+        <div><span>Pedido mínimo</span><span>m²</span></div>
+        <div><span>ACM PE</span><b>800</b></div>
+        <div><span>ACM PVDF</span><b>1.000</b></div>
+        <div><span>Colores especiales</span><b>1.200</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-flag">Modo prévia: o formulário não envia nada para o CRM.</div>
+      <form id="leadForm" novalidate>
+        <h3>Quiero distribuir Alusignpanel</h3>
+        <p class="sub">Registro exclusivo para empresas.</p>
+        <div class="fgrid">
+          <div class="f"><label for="f-nome">Nombre completo</label><input id="f-nome" name="form_fields[Nome]" autocomplete="name" required></div>
+          <div class="f"><label for="f-email">E-mail corporativo</label><input id="f-email" type="email" name="form_fields[email]" autocomplete="email" inputmode="email" required></div>
+          <div class="f"><label for="f-tel">Teléfono / WhatsApp</label><input id="f-tel" type="tel" name="form_fields[Telefone]" autocomplete="tel" inputmode="tel" required></div>
+          <div class="f"><label for="f-emp">Empresa</label><input id="f-emp" name="form_fields[Nome_empresa]" autocomplete="organization" required></div>
+          <div class="f"><label for="f-pais">País</label><input id="f-pais" name="form_fields[Pais]" autocomplete="country-name" required></div>
+          <div class="f"><label for="f-site">Sitio web o Instagram</label><input id="f-site" name="form_fields[site]" autocomplete="url" required></div>
+          <div class="f full"><label for="f-act">Actividad principal de la empresa</label>
+            <select id="f-act" name="form_fields[actividad]" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option>Distribuidor de materiales para comunicación visual</option>
+              <option>Importador y distribuidor</option>
+              <option>Fabricante de productos con láminas de ACM</option>
+              <option>Otro</option>
+            </select></div>
+          <div class="f full"><label for="f-imp">¿Tu empresa importa actualmente?</label>
+            <select id="f-imp" name="form_fields[importa]" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option>Sí, regularmente (más de 6 veces al año)</option>
+              <option>Sí, ocasionalmente (2–5 veces al año)</option>
+              <option>Sí, raramente (1 vez al año)</option>
+              <option>Aún no, pero queremos comenzar</option>
+              <option>No estamos interesados en importar</option>
+            </select></div>
+          <div class="f full"><label for="f-val">Valor de importación anual</label>
+            <select id="f-val" name="form_fields[anual]" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option>No importo</option>
+              <option>Hasta USD 500.000</option>
+              <option>De USD 501.000 hasta USD 1.000.000</option>
+              <option>De USD 1.001.000 hasta USD 5.000.000</option>
+              <option>Más de USD 5.000.000</option>
+            </select></div>
+        </div>
+        <div class="form-foot">
+          <button class="btn" type="submit" id="sendBtn">Enviar registro
+            <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <small>Tus datos se usan solo para el contacto comercial de Alusignpanel.</small>
+        </div>
+        <p class="form-err" id="formErr">No pudimos enviar tu registro. Inténtalo de nuevo en unos segundos.</p>
+      </form>
+      <div class="form-msg" id="formOk">
+        <div class="ok"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3 class="h" style="font-size:30px">¡Registro recibido!</h3>
+        <p>Un especialista de Alusignpanel te contactará pronto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="blue">
+  <div class="wrap">
+    <img src="img/logo-white.png" alt="Alusignpanel" width="351" height="81">
+    <span>© Alusignpanel · Paneles de aluminio compuesto desde 2000</span>
+  </div>
+</footer>
+
+<script>
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const touch = matchMedia("(hover: none)").matches;
+const $ = id => document.getElementById(id);
+
+addEventListener("scroll", () => $("top").classList.toggle("scrolled", scrollY > 20), {passive:true});
+
+// Contadores
+const fmt = n => n.toLocaleString("es-ES").replace(/,/g, ".");
+const cio = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; cio.unobserve(e.target);
+  const el = e.target, to = +el.dataset.count;
+  const out = v => el.textContent = to >= 10000 ? fmt(v) : v;
+  if (reduce) return out(to);
+  const s = performance.now(), dur = 1500;
+  (function f(t){ const k = Math.min(1, (t - s) / dur); out(Math.round(to * (1 - Math.pow(1 - k, 3)))); if (k < 1) requestAnimationFrame(f); })(s);
+}), {threshold:.5});
+document.querySelectorAll("[data-count]").forEach(el => cio.observe(el));
+
+// ===== Amostra de alumínio: inclina e o brilho do escovado corre com o cursor/dedo =====
+(() => {
+  const sample = $("sample"), stage = $("stage");
+  const set = (px, py) => {
+    sample.style.setProperty("--ry", (-26 + px * 32) + "deg");
+    sample.style.setProperty("--rx", (14 - py * 16) + "deg");
+    sample.style.setProperty("--mx", (10 + px * 80) + "%");
+  };
+  set(.25, .35);
+  let foco = 0;   // depois de trocar o núcleo, segura o giro um pouco para mostrar a borda
+  if (!reduce) {
+    if (touch) {
+      let user = 0;
+      stage.addEventListener("pointermove", e => { user = performance.now(); const r = sample.getBoundingClientRect(); set(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))); });
+      (function loop(t){ if (t - user > 2500 && t > foco) { const s = t / 1000; set(.5 + Math.sin(s * .7) * .42, .45 + Math.cos(s * .5) * .25); } requestAnimationFrame(loop); })(0);
+    } else {
+      addEventListener("pointermove", e => { if (performance.now() > foco) set(e.clientX / innerWidth, e.clientY / innerHeight); }, {passive:true});
+    }
+  }
+  document.querySelectorAll(".nucleo-tg button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".nucleo-tg button").forEach(x => x.classList.toggle("on", x === b));
+    const a2 = b.dataset.n === "a2"; $("edgeR").classList.toggle("a2", a2); $("edgeB").classList.toggle("a2", a2);
+    set(.95, .25); foco = performance.now() + 2200;
+  }));
+})();
+
+// ===== Configurador de fachada =====
+const FIN = [
+  {n:"Plata PVDF", c:null, sw:"linear-gradient(135deg,#e3e7ec,#a9b2bd 45%,#f3f5f7 60%,#9aa3ad)", g:"PVDF Kynar · 15 años", d:"El clásico de las fachadas modernas. Color metálico estable al sol."},
+  {n:"Azul", c:"#3f78db", sw:"#2f68cf", g:"PVDF · 15 años", d:"Color corporativo de alto impacto."},
+  {n:"Rojo", c:"#e1362e", sw:"#d9261f", g:"Poliéster · 5 / 10 años", d:"Ideal para marcas, retail y señalización."},
+  {n:"Champagne", c:"#d8bf8c", sw:"linear-gradient(135deg,#e6d3a8,#b99a5e 50%,#efe0bd)", g:"PVDF metálico · 15 años", d:"Tono metálico cálido para proyectos premium."},
+  {n:"Grafito", c:"#8a929c", sw:"linear-gradient(135deg,#8d959f,#5d6570)", g:"PVDF · 15 años", d:"Sobrio y elegante, combina con vidrio azul."},
+  {n:"Verde", c:"#5aa36b", sw:"#3f8f55", g:"PVDF · 15 años", d:"Para marcas que quieren destacar en la ciudad."},
+  {n:"Madera", t:"img/tex/madera.jpg", sw:"url(img/tex/madera.jpg) center/cover", g:"Acabado madera", d:"La calidez de la madera, sin mantenimiento."},
+  {n:"Mármol", t:"img/tex/marmol.jpg", sw:"url(img/tex/marmol.jpg) center/cover", g:"Acabado mármol", d:"Vetas de piedra con el peso del ACM."},
+  {n:"Cepillado", t:"img/tex/cepillado.jpg", sw:"url(img/tex/cepillado.jpg) center/cover", g:"Cepillado", d:"Textura metálica cepillada en plata, oro, azul y rojo."}
+];
+(() => {
+  const chips = $("chips"), tint = $("tint");
+  chips.innerHTML = FIN.map((f, i) => `<button class="chip" data-i="${i}" aria-pressed="false"><i style="background:${f.sw}"></i><b>${f.n}</b></button>`).join("");
+  function pick(i){
+    const f = FIN[i];
+    chips.querySelectorAll(".chip").forEach((c, j) => { c.classList.toggle("on", j === i); c.setAttribute("aria-pressed", j === i); });
+    if (f.c === null && !f.t) tint.style.opacity = 0;
+    else { tint.style.opacity = 1; tint.style.backgroundImage = f.t ? `url(${f.t})` : "none"; tint.style.backgroundColor = f.t ? "transparent" : f.c; tint.style.backgroundSize = f.t ? "360px auto" : "cover"; tint.style.backgroundRepeat = "repeat"; }
+    $("ftag").innerHTML = `ACM <b>${f.g.split(" ·")[0]}</b> · ${f.n}`;
+    $("ciName").textContent = f.n; $("ciDesc").textContent = f.d; $("ciG").textContent = f.g;
+  }
+  chips.addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) { auto = false; pick(+b.dataset.i); } });
+  pick(0);
+  // na primeira vez que aparece, passa sozinho por algumas cores para mostrar que dá pra trocar
+  let auto = true;
+  if (!reduce) new IntersectionObserver(([en], o) => { if (!en.isIntersecting) return; o.disconnect();
+    let k = 0; const seq = [2, 6, 1, 0]; const it = setInterval(() => { if (!auto) return clearInterval(it); pick(seq[k++]); if (k >= seq.length) clearInterval(it); }, 1000); }, {threshold:.6}).observe($("facade"));
+})();
+
+// ===== Prueba de fuego =====
+(() => {
+  const P = [...document.querySelectorAll(".probe")].map(el => { const c = el.querySelector("canvas"); return {el, c, ctx:c.getContext("2d"), parts:[], pe:el.classList.contains("pe"), d:1}; });
+  const btn = $("fuegoBtn"), T = $("fuegoT"), DUR = 7;
+  let t0 = 0, running = false;
+  function size(){ P.forEach(p => { const r = p.c.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2); p.c.width = r.width * d; p.c.height = r.height * d; p.d = d; }); }
+  function frame(now){
+    const s = (now - t0) / 1000, on = s < DUR;
+    T.textContent = Math.min(DUR, s).toFixed(1).replace(".", ",").padStart(4, "0") + " s";
+    P.forEach(p => {
+      const {ctx, c, d} = p, W = c.width, H = c.height;
+      ctx.clearRect(0, 0, W, H);
+      const alt = p.pe ? Math.min(.62, .1 + s * .085) : .08;   // no PE a chama sobe pelo painel
+      if (on) for (let k = 0; k < (p.pe ? 5 : 3); k++) { const sx = .5 + (Math.random() - .5) * (p.pe ? .5 : .32); p.parts.push({x: W * sx, y: H * .84, vx:(.5 - sx) * 1.2 * d + (Math.random() - .5) * .4 * d, vy:-(1.2 + Math.random() * 2) * d, life:1, r:(5 + Math.random() * 9) * d, smoke:false}); }
+      if (p.pe && s > 1.5 && on) for (let k = 0; k < 2; k++) p.parts.push({x: W * (.32 + Math.random() * .36), y: H * (.8 - alt), vx:(Math.random() - .5) * .8 * d, vy:-(.8 + Math.random()) * d, life:1, r:(14 + Math.random() * 20) * d, smoke:true});
+      p.parts = p.parts.filter(q => q.life > 0);
+      ctx.globalCompositeOperation = "lighter";
+      for (const q of p.parts) {
+        q.x += q.vx; q.y += q.vy; q.life -= q.smoke ? .008 : (p.pe ? .02 : .05) / (1 + alt);
+        if (q.smoke) continue;
+        const g = ctx.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.r);
+        g.addColorStop(0, `rgba(255,${(210 + 40 * q.life) | 0},140,${.42 * q.life})`); g.addColorStop(.45, `rgba(255,${(80 + 70 * q.life) | 0},20,${.22 * q.life})`); g.addColorStop(1, "rgba(255,40,0,0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q.x, q.y, q.r * (1.6 - q.life * .6), 0, 7); ctx.fill();
+      }
+      ctx.globalCompositeOperation = "source-over";
+      for (const q of p.parts) { if (!q.smoke) continue;
+        const rr = q.r * (2 - q.life), g = ctx.createRadialGradient(q.x, q.y, 0, q.x, q.y, rr);
+        g.addColorStop(0, `rgba(28,30,38,${.45 * q.life})`); g.addColorStop(1, "rgba(28,30,38,0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q.x, q.y, rr, 0, 7); ctx.fill(); }
+      p.el.querySelector(".burn").style.opacity = p.pe ? Math.min(1, s / 5) : Math.min(.15, s / 25);
+      if (s > 3) p.el.querySelector(".res").classList.add("on");
+    });
+    if (s < DUR + 2 || P.some(p => p.parts.length)) requestAnimationFrame(frame);
+    else { running = false; btn.textContent = "Repetir la prueba"; btn.disabled = false; }
+  }
+  btn.addEventListener("click", () => {
+    if (running) return; running = true; btn.disabled = true; btn.textContent = "Probando…";
+    P.forEach(p => { p.parts = []; p.el.querySelector(".burn").style.opacity = 0; p.el.querySelector(".res").classList.remove("on"); });
+    size(); t0 = performance.now(); requestAnimationFrame(frame);
+  });
+})();
+
+// ===== Corrugado: quadros avançam com a rolagem =====
+(() => {
+  const N = 60, track = $("corrTrack"), canvas = $("corrCanvas"), ctx = canvas.getContext("2d");
+  const small = matchMedia("(max-width:700px)").matches;
+  const url = i => `vid/corr${small ? "-p" : ""}/f${String(i + 1).padStart(3, "0")}.webp`;
+  const frames = new Array(N); let atual = 0, desenhado = -1;
+  const fila = []; for (let p = 16; p >= 1; p /= 2) for (let i = 0; i < N; i += p) if (!fila.includes(i)) fila.push(i);
+  let ativos = 0, iniciou = false;
+  function carrega(){ while (ativos < 6 && fila.length) { const i = fila.shift(); const im = new Image(); ativos++;
+    im.onload = () => { frames[i] = im; ativos--; if (Math.abs(i - Math.round(atual)) < 10) desenha(true); carrega(); };
+    im.onerror = () => { ativos--; carrega(); }; im.src = url(i); } }
+  function perto(i){ for (let d = 0; d < N; d++) { if (frames[i - d]) return frames[i - d]; if (frames[i + d]) return frames[i + d]; } return null; }
+  function mede(){ const d = Math.min(devicePixelRatio || 1, 2); canvas.width = canvas.clientWidth * d; canvas.height = canvas.clientHeight * d; desenha(true); }
+  function desenha(forca){ const i = Math.max(0, Math.min(N - 1, Math.round(atual))); if (i === desenhado && !forca) return;
+    const im = perto(i); if (!im) return; desenhado = i;
+    const cw = canvas.width, ch = canvas.height, s = Math.min(cw / im.width, ch / im.height) * 1.08;
+    ctx.clearRect(0, 0, cw, ch); ctx.drawImage(im, (cw - im.width * s) / 2, (ch - im.height * s) / 2, im.width * s, im.height * s); }
+  const capas = [...document.querySelectorAll("#capas li")];
+  function prog(){ const r = track.getBoundingClientRect(); return Math.max(0, Math.min(1, -r.top / (r.height - innerHeight))); }
+  function tick(){ const p = prog(); atual += (p * (N - 1) - atual) * (reduce ? 1 : .2); desenha();
+    capas.forEach(li => li.classList.toggle("on", p >= +li.dataset.at)); requestAnimationFrame(tick); }
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !iniciou) { iniciou = true; carrega(); mede(); tick(); } }, {rootMargin:"800px"}).observe(track);
+  addEventListener("resize", mede);
+})();
+
+// ===== Medidas =====
+const med = {w:1220, l:2440, e:4};
+function desenhaPlano(){
+  const W = med.w / 1000, L = med.l / 1000, A = W * L;
+  $("moA").textContent = A.toFixed(2).replace(".", ",");
+  $("moP").textContent = Math.ceil(1000 / A);
+  $("moF").textContent = med.w === 1220 && med.l === 2440 ? "4'×8'" : (med.w === 1220 && med.l === 3050 ? "4'×10'" : "Especial");
+  // a lámina ocupa a altura do desenho; a pessoa (1,75 m) dá a referência de tamanho
+  const s = 330 / L, ph = L * s, pw = W * s, x0 = 200 - pw / 2 + 24, y0 = 380 - ph;
+  const set = (id, o) => { const el = $(id); for (const k in o) el.setAttribute(k, o[k]); };
+  set("pl", {x:x0, y:y0, width:pw, height:ph});
+  set("plEdge", {x:x0 + pw, y:y0, width:Math.max(3, med.e * 1.8), height:ph});
+  set("dimW", {x1:x0, x2:x0 + pw, y1:y0 - 14, y2:y0 - 14});
+  set("tW", {x:x0 + pw / 2, y:y0 - 22}); $("tW").textContent = med.w + " mm";
+  set("dimL", {x1:x0 + pw + 22, x2:x0 + pw + 22, y1:y0, y2:380});
+  set("tL", {x:x0 + pw + 36, y:y0 + ph / 2, transform:`rotate(90 ${x0 + pw + 36} ${y0 + ph / 2})`}); $("tL").textContent = med.l + " mm";
+  const px = x0 - 42, pz = 380 - 1.75 * s;
+  $("persona").setAttribute("transform", `translate(${px} ${pz + 9}) scale(${(1.75 * s) / 80})`);
+  set("tP", {x:px, y:396});
+}
+document.querySelectorAll(".seg").forEach(seg => seg.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  seg.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
+  med[seg.dataset.k] = +b.dataset.v; desenhaPlano();
+}));
+desenhaPlano();
+
+// Vídeo da fábrica: carrega e toca só quando aparece
+(() => { const v = $("fabVid");
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !reduce) { if (!v.src) v.src = v.dataset.src; v.play().catch(()=>{}); } else v.pause(); }, {threshold:.15}).observe(v); })();
+
+// ===== Formulário =====
+if (!AL_LIVE) document.body.classList.add("preview");
+const form = $("leadForm");
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  let bad = null;
+  form.querySelectorAll("[required]").forEach(i => { const ok = i.checkValidity() && i.value.trim() !== ""; i.closest(".f").classList.toggle("err", !ok); if (!ok && !bad) bad = i; });
+  if (bad) { bad.focus(); return; }
+  const btn = $("sendBtn"); btn.disabled = true; $("formErr").style.display = "none";
+  try {
+    if (AL_LIVE) {
+      const fd = new FormData(form), c = AL_CONFIG.elementor;
+      fd.append("action", "elementor_pro_forms_send_form");
+      fd.append("post_id", c.post_id); fd.append("form_id", c.form_id); fd.append("queried_id", c.queried_id);
+      fd.append("referer_title", document.title);
+      const r = await fetch(AL_CONFIG.formEndpoint, {method:"POST", body:fd, credentials:"same-origin"});
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || j.success === false) throw new Error("send");
+      (window.dataLayer = window.dataLayer || []).push({event:"lead_form_submit"});
+    } else {
+      console.log("[prévia] lead não enviado:", Object.fromEntries(new FormData(form)));
+      await new Promise(r => setTimeout(r, 600));
+    }
+    form.style.display = "none"; $("formOk").classList.add("on");
+  } catch (err) { $("formErr").style.display = "block"; btn.disabled = false; }
+});
+form.addEventListener("input", e => { const f = e.target.closest(".f"); if (f) f.classList.remove("err"); });
+</script>
+</body>
+</html>
