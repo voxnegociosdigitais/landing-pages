@@ -97,33 +97,42 @@ section{position:relative;padding:130px 0}
 .sw:hover{transform:scale(1.08)}
 .dock-hint{font-size:14px;color:var(--muted-azul);margin-top:14px}
 
-/* NÚMEROS em frase */
-.nums{padding:110px 0}
-.nums p{font-size:clamp(30px,4.2vw,62px);font-weight:600;letter-spacing:-.04em;line-height:1.08;color:#b7c3da;max-width:22ch}
-.nums p b{color:var(--azul);font-weight:700}
+/* NÚMEROS: contador ao vivo (ritmo da fábrica) + dígitos que rolam */
+.nums{padding:120px 0}
+.vivo-t{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:500;color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--verm);box-shadow:0 0 0 0 rgba(238,42,36,.5);animation:pulso 1.8s infinite}
+@keyframes pulso{70%{box-shadow:0 0 0 10px rgba(238,42,36,0)}100%{box-shadow:0 0 0 0 rgba(238,42,36,0)}}
+.vivo-n{display:flex;align-items:baseline;gap:.12em;margin:14px 0 18px;font-size:clamp(64px,13vw,190px);font-weight:700;letter-spacing:-.055em;line-height:.9;color:var(--azul)}
+.vivo-n .un{font-size:.32em;letter-spacing:-.02em;color:var(--texto)}
+.dia{position:relative;height:6px;border-radius:99px;background:#e3e9f3;overflow:hidden;max-width:880px}
+.dia i{position:absolute;inset:0 auto 0 0;width:0;background:var(--azul);border-radius:99px}
+.vivo-s{display:flex;justify-content:space-between;gap:16px;max-width:880px;margin-top:10px;font-size:14px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:84px;padding-top:34px;border-top:1px solid #dfe5ef}
+.stats .odo{font-size:clamp(52px,6vw,92px);font-weight:700;letter-spacing:-.05em;line-height:.9;color:var(--texto)}
+.stats .lb{display:block;margin-top:10px;font-size:16px;color:var(--muted)}
+.odo{display:inline-flex;align-items:flex-end;font-variant-numeric:tabular-nums}
+.odo .d{display:inline-block;height:1em;overflow:hidden;line-height:1}
+.odo .col{display:flex;flex-direction:column;transition:transform 1.6s cubic-bezier(.16,.84,.24,1)}
+.odo .col span{display:block;height:1em;line-height:1}
+.odo.rapido .col{transition-duration:.45s}
+.odo .s{line-height:1;height:1em;display:inline-block;margin:0 -.1em}
 
-/* NÚCLEO / FOGO */
+/* NÚCLEO: comparativo arrastável PE x FR A2 (renders do mesmo painel) */
 .fuego{background:var(--noite);color:#fff}
-.fuego-head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;margin-bottom:52px}
+.fuego-head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;margin-bottom:48px}
 .fuego .lead{color:var(--muted-azul)}
-.probes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.probe{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#dfe7f3 center/cover no-repeat}
-.probe.pe{background-image:url(img/nucleo-pe.jpg);background-position:12% 100%}
-.probe.a2{background-image:url(img/nucleo-a2.jpg);background-position:12% 100%}
-.probe .burn{position:absolute;inset:0;background:radial-gradient(75% 70% at 50% 100%,rgba(30,14,6,.97),rgba(66,32,10,.82) 40%,rgba(110,62,20,.3) 64%,transparent 78%);opacity:0;transition:opacity .25s}
-.probe canvas{position:absolute;inset:0;width:100%;height:100%}
-.probe .lbl{position:absolute;left:18px;top:16px;color:#fff}
-.probe .lbl b{display:block;font-size:clamp(26px,3vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1}
-.probe .lbl span{font-size:14px;color:#c9d6f6}
-.probe .res{position:absolute;left:12px;right:12px;bottom:12px;font-size:15px;font-weight:700;padding:12px;border-radius:12px;text-align:center;opacity:0;transform:translateY(10px);transition:all .4s var(--ease)}
-.probe .res.on{opacity:1;transform:none}
-.probe.pe .res{background:var(--verm);color:#fff}
-.probe.a2 .res{background:#fff;color:var(--azul)}
-.lab-bar{display:flex;align-items:center;gap:20px;margin-top:22px}
-.lab-bar .t{font-size:15px;color:var(--muted-azul)}
-.uso{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px;border-top:1px solid rgba(255,255,255,.14);padding-top:28px}
-.uso h3{font-size:22px;font-weight:700;letter-spacing:-.02em}
-.uso p{color:var(--muted-azul);margin-top:6px;font-size:16px;max-width:36ch}
+.cmp{position:relative;aspect-ratio:1800/1000;border-radius:24px;overflow:hidden;background:#dfe6f1;touch-action:pan-y;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cmp .a{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
+.cmp-l{position:absolute;top:20px;font-size:15px;font-weight:600;color:var(--texto);background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:8px 14px;border-radius:99px}
+.cmp-l.l{left:20px}.cmp-l.r{right:20px}
+.cmp-h{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 12px rgba(6,25,74,.35)}
+.cmp-h::after{content:"";position:absolute;top:50%;left:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='14' fill='none'%3E%3Cpath d='M7 1 1 7l6 6M19 1l6 6-6 6' stroke='%230a3ea6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center no-repeat;box-shadow:0 8px 24px rgba(6,25,74,.35)}
+.vs2{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
+.vs2 h3{font-size:clamp(28px,3vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1}
+.vs2 h3 small{display:block;font-size:15px;font-weight:500;letter-spacing:0;color:var(--muted-azul);margin-top:6px}
+.vs2 ul{list-style:none;margin-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+.vs2 li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:16px;color:#dbe5ff}
 .certs{margin-top:34px;font-size:14px;color:var(--muted-azul);line-height:1.9}
 .certs b{color:#fff;font-weight:600}
 
@@ -164,13 +173,15 @@ section{position:relative;padding:130px 0}
 .plano .sheet{transition:all .6s var(--ease)}
 .med-note{font-size:14px;color:var(--muted);margin-top:18px}
 
-/* FÁBRICA (vídeo) */
-.fab{position:relative;min-height:94svh;display:flex;align-items:flex-end;overflow:hidden;padding:0;color:#fff;background:var(--noite)}
-.fab video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.fab::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,25,74,.1) 0%,rgba(6,25,74,.45) 45%,rgba(6,25,74,.95) 100%)}
-.fab .wrap{position:relative;z-index:2;padding-bottom:72px;padding-top:160px}
-.fab .lead{margin:22px 0 40px;color:#d3defa}
-.fab-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+/* FÁBRICA: mosaico de trechos reais da fábrica */
+.fab{background:var(--noite);color:#fff}
+.fab-head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;margin-bottom:44px}
+.fab .lead{color:var(--muted-azul)}
+.mosaico{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mosaico figure{position:relative;aspect-ratio:540/596;border-radius:18px;overflow:hidden;background:#0b2563}
+.mosaico video{width:100%;height:100%;object-fit:cover}
+.mosaico figcaption{position:absolute;left:12px;bottom:12px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:99px;background:rgba(6,25,74,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.fab-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:52px}
 .fab-nums b{display:block;font-size:clamp(36px,3.8vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1}
 .fab-nums span{display:block;margin-top:8px;font-size:15px;color:#c9d6f6}
 
@@ -217,7 +228,8 @@ footer img{height:22px;width:auto}
 
 /* RESPONSIVO */
 @media (max-width:1020px){
-  .hero-grid,.fuego-head,.med-grid,.form-grid{grid-template-columns:1fr}
+  .hero-grid,.fuego-head,.fab-head,.med-grid,.form-grid{grid-template-columns:1fr}
+  .mosaico{grid-template-columns:1fr 1fr}
   .top nav a:not(.btn){display:none}
   .corr-stick{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:4px;align-content:start;padding-top:18px}
   .corr-canvas{aspect-ratio:auto;height:40svh}
@@ -242,18 +254,23 @@ footer img{height:22px;width:auto}
   .sw::after{inset:-4px}
   .dock-hint{font-size:13px;margin-top:12px}
   .hero .cta-m{display:flex;width:100%;margin-top:20px}
-  .nums{padding:76px 0}
-  .nums p{font-size:31px}
-  .fuego-head{margin-bottom:30px;gap:16px}
-  .probes{gap:10px}
-  .probe{border-radius:16px;aspect-ratio:3/4.4}
-  .probe .lbl{left:12px;top:12px}
-  .probe .lbl span{font-size:12px}
-  .probe .res{font-size:13px;padding:10px 6px;left:8px;right:8px;bottom:8px}
-  .lab-bar{flex-direction:column;align-items:stretch;gap:10px}
-  .lab-bar .btn{width:100%}
-  .lab-bar .t{text-align:center}
-  .uso{grid-template-columns:1fr;gap:20px;margin-top:40px}
+  .nums{padding:80px 0}
+  .vivo-t{font-size:15px}
+  .vivo-n{font-size:clamp(54px,17vw,72px);margin:12px 0 14px}
+  .vivo-s{font-size:12.5px}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:52px;padding-top:24px}
+  .stats .odo{font-size:42px}
+  .stats .lb{font-size:13px;margin-top:8px}
+  .fuego-head{margin-bottom:26px;gap:16px}
+  .cmp{aspect-ratio:4/3.6;border-radius:18px;margin:0 -4px}
+  .cmp img{object-position:50% 50%}
+  .cmp-l{top:12px;font-size:13px;padding:6px 11px}
+  .cmp-l.l{left:12px}.cmp-l.r{right:12px}
+  .cmp-h::after{width:44px;height:44px;margin:-22px 0 0 -22px}
+  .vs2{grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+  .vs2 h3{font-size:26px}
+  .vs2 h3 small{font-size:12.5px}
+  .vs2 li{font-size:14px;padding:10px 0}
   .corr-track{height:300vh}
   .corr-stick{top:60px;height:calc(100svh - 60px)}
   .corr .lead{display:none}
@@ -274,8 +291,11 @@ footer img{height:22px;width:auto}
   .med-grid>div:first-child>.t2{order:1}
   .med-grid>div:first-child>.lead{order:2;margin:16px 0 22px}
   .plano{order:3;padding:14px;border-radius:18px;aspect-ratio:1.2/1;margin-bottom:24px}
-  .fab{min-height:90svh}
-  .fab-nums{grid-template-columns:1fr 1fr;gap:22px 16px}
+  .fab-head{grid-template-columns:1fr;gap:16px;margin-bottom:26px}
+  .mosaico{grid-template-columns:1fr 1fr;gap:8px;margin:0 -4px}
+  .mosaico figure{border-radius:14px}
+  .mosaico figcaption{left:8px;bottom:8px;font-size:11.5px;padding:5px 9px}
+  .fab-nums{grid-template-columns:1fr 1fr;gap:22px 16px;margin-top:34px}
   .fab-nums b{font-size:36px}
   .fab-nums span{font-size:14px}
   .fgrid{grid-template-columns:1fr}
@@ -326,28 +346,37 @@ footer img{height:22px;width:auto}
   </div>
 </section>
 
-<!-- NÚMEROS -->
+<!-- NÚMEROS: ritmo da fábrica ao vivo -->
 <section class="nums">
   <div class="wrap">
-    <p><b data-count="26">0</b> años fabricando ACM. <b data-count="32000">0</b> m² por día. <b data-count="15">0</b> años de garantía en PVDF. Y precio de fábrica para tu empresa.</p>
+    <p class="vivo-t"><span class="dot"></span>Al ritmo de la fábrica, hoy ya se produjeron</p>
+    <div class="vivo-n"><span class="odo rapido" id="hoy">0</span><span class="un">m²</span></div>
+    <div class="dia"><i id="diaBar"></i></div>
+    <p class="vivo-s"><span>Capacidad de 32.000 m² de ACM por día</span><span id="hora">Hora en China</span></p>
+    <div class="stats">
+      <div><span class="odo" data-odo="26">00</span><span class="lb">años fabricando ACM</span></div>
+      <div><span class="odo" data-odo="15">00</span><span class="lb">años de garantía en PVDF</span></div>
+      <div><span class="odo" data-odo="9">0</span><span class="lb">familias de acabado</span></div>
+    </div>
   </div>
 </section>
 
-<!-- NÚCLEO / PRUEBA DE FUEGO -->
+<!-- NÚCLEO: comparativo arrastável -->
 <section class="fuego" id="fuego">
   <div class="wrap">
     <div class="fuego-head">
       <h2 class="t2">El núcleo sí importa</h2>
-      <p class="lead">Por fuera son iguales. Adentro, el núcleo PE es plástico y el FR A2 es mineral: prácticamente incombustible y con baja emisión de humo.</p>
+      <p class="lead">Por fuera son iguales. Desliza y mira por dentro: el PE es plástico, el FR A2 es mineral y prácticamente incombustible.</p>
     </div>
-    <div class="probes">
-      <div class="probe pe"><div class="burn"></div><canvas></canvas><div class="lbl"><b>PE</b><span>núcleo negro</span></div><span class="res">Se quema y gotea</span></div>
-      <div class="probe a2"><div class="burn"></div><canvas></canvas><div class="lbl"><b>FR A2</b><span>núcleo mineral</span></div><span class="res">No propaga la llama</span></div>
+    <div class="cmp" id="cmp">
+      <img class="b" src="img/nucleo2-a2.jpg" alt="Borde de un panel Alusignpanel con núcleo mineral FR A2, de color blanco" width="1800" height="1000" loading="lazy">
+      <img class="a" src="img/nucleo2-pe.jpg" alt="Borde del mismo panel con núcleo PE negro" width="1800" height="1000" loading="lazy">
+      <span class="cmp-l l">Núcleo PE</span><span class="cmp-l r">Núcleo FR A2</span>
+      <div class="cmp-h" role="slider" tabindex="0" aria-label="Comparar núcleo PE y FR A2" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
     </div>
-    <div class="lab-bar"><button class="btn" id="fuegoBtn">Encender la llama</button><span class="t" id="fuegoT">00,0 s</span></div>
-    <div class="uso">
-      <div><h3>PE</h3><p>Liviano y económico. Señalización, decoración y uso interior.</p></div>
-      <div><h3>FR A2</h3><p>Hospitales, escuelas, shoppings, aeropuertos y edificios altos.</p></div>
+    <div class="vs2">
+      <div><h3>PE<small>núcleo de polietileno</small></h3><ul><li>Se quema y gotea</li><li>Liviano y económico</li><li>Señalización, decoración e interiores</li></ul></div>
+      <div><h3>FR A2<small>núcleo mineral</small></h3><ul><li>No propaga la llama</li><li>Baja emisión de humo</li><li>Hospitales, escuelas, shoppings, aeropuertos y edificios altos</li></ul></div>
     </div>
     <p class="certs"><b>Certificado A2</b> GB/T 8627 · DIN 4102 A2 · NF F16-101 M0 · SGS · CE · UL</p>
   </div>
@@ -382,7 +411,7 @@ footer img{height:22px;width:auto}
   <div class="wrap med-grid">
     <div>
       <h2 class="t2">Del tamaño de tu obra</h2>
-      <p class="lead">Elige ancho, largo y espesor. Mira la lámina al lado de una persona y cuánto rinde.</p>
+      <p class="lead">Elige ancho, largo y espesor. Mira la lámina, con la película Alusignpanel, al lado de una persona.</p>
       <div class="opt"><p>Ancho</p><div class="seg" data-k="w"><button data-v="1220" class="on">1220 mm</button><button data-v="1250">1250 mm</button><button data-v="1500">1500 mm</button></div></div>
       <div class="opt"><p>Largo</p><div class="seg" data-k="l"><button data-v="2440" class="on">2440 mm</button><button data-v="3050">3050 mm</button><button data-v="5800">5800 mm</button></div></div>
       <div class="opt"><p>Espesor</p><div class="seg" data-k="e"><button data-v="2">2</button><button data-v="3">3</button><button data-v="4" class="on">4 mm</button><button data-v="5">5</button><button data-v="6">6</button></div></div>
@@ -396,13 +425,20 @@ footer img{height:22px;width:auto}
     <div class="plano" aria-hidden="true">
       <svg viewBox="0 0 400 400">
         <defs>
-          <linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e4e9f0"/><stop offset=".42" stop-color="#b9c3d0"/><stop offset=".5" stop-color="#f6f8fa"/><stop offset=".62" stop-color="#c3ccd8"/><stop offset="1" stop-color="#a3aebd"/></linearGradient>
-          <pattern id="pEsc" width="400" height="3" patternUnits="userSpaceOnUse"><rect width="400" height="1" fill="#fff" opacity=".18"/></pattern>
+          <pattern id="pFilm" patternUnits="userSpaceOnUse" width="160" height="109"><image href="img/filme.jpg" width="160" height="109" preserveAspectRatio="none"/></pattern>
+          <linearGradient id="gBrilho" x1="0" y1="0" x2="1" y2=".55"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".45" stop-color="#fff" stop-opacity=".45"/><stop offset=".55" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#6b7a90" stop-opacity=".22"/></linearGradient>
+          <linearGradient id="gAlu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f6f8"/><stop offset=".5" stop-color="#aeb8c4"/><stop offset="1" stop-color="#e6eaef"/></linearGradient>
+          <linearGradient id="gAba" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#fbfcfd"/><stop offset="1" stop-color="#cfd6df"/></linearGradient>
+          <radialGradient id="gChao"><stop offset="0" stop-color="#0a1f4d" stop-opacity=".22"/><stop offset="1" stop-color="#0a1f4d" stop-opacity="0"/></radialGradient>
+          <filter id="fAba" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="3" stdDeviation="3" flood-color="#0a1f4d" flood-opacity=".3"/></filter>
         </defs>
         <line x1="0" y1="380" x2="400" y2="380" stroke="#c9d3e3" stroke-width="1.5"/>
-        <rect class="sheet" id="pl" x="0" y="0" width="100" height="200" rx="2" fill="url(#gPanel)"/>
-        <rect class="sheet" id="plEsc" x="0" y="0" width="100" height="200" fill="url(#pEsc)"/>
-        <rect class="sheet" id="plEdge" x="0" y="0" width="6" height="200" fill="#0a3ea6"/>
+        <ellipse class="sheet" id="plChao" cx="200" cy="381" rx="60" ry="5" fill="url(#gChao)"/>
+        <rect class="sheet" id="plEdge" x="0" y="0" width="6" height="200" fill="#8a96a8"/>
+        <rect class="sheet" id="pl" x="0" y="0" width="100" height="200" fill="url(#pFilm)"/>
+        <rect class="sheet" id="plBr" x="0" y="0" width="100" height="200" fill="url(#gBrilho)"/>
+        <polygon class="sheet" id="peelAlu" points="0,0 0,0 0,0" fill="url(#gAlu)"/>
+        <polygon class="sheet" id="peelAba" points="0,0 0,0 0,0" fill="url(#gAba)" filter="url(#fAba)"/>
         <g font-family="Schibsted Grotesk, sans-serif" font-size="13" font-weight="600" fill="#0a1f4d">
           <line class="sheet" id="dimW" stroke="#ee2a24" stroke-width="1.5"/>
           <text class="sheet" id="tW" text-anchor="middle">1220 mm</text>
@@ -410,7 +446,7 @@ footer img{height:22px;width:auto}
           <text class="sheet" id="tL" text-anchor="middle">2440 mm</text>
         </g>
         <!-- pessoa de 1,75 m (80 unidades de altura) -->
-        <g id="persona" fill="#8ea3c8"><circle cx="0" cy="7" r="7"/><path d="M-10 18c3-3 17-3 20 0l3 26c0 2-3 2-4 0l-2-19-1 55h-5l-1-31-1 31h-5l-1-55-2 19c-1 2-4 2-4 0z"/></g>
+        <g id="persona" fill="#9fb0cc"><circle cx="0" cy="7" r="7"/><path d="M-10 18c3-3 17-3 20 0l3 26c0 2-3 2-4 0l-2-19-1 55h-5l-1-31-1 31h-5l-1-55-2 19c-1 2-4 2-4 0z"/></g>
         <text id="tP" font-family="Schibsted Grotesk, sans-serif" font-size="12" fill="#5a6b8c" text-anchor="middle">1,75 m</text>
       </svg>
     </div>
@@ -419,10 +455,17 @@ footer img{height:22px;width:auto}
 
 <!-- FÁBRICA -->
 <section class="fab" id="fabrica">
-  <video id="fabVid" muted loop playsinline preload="none" poster="vid/fabrica.jpg" data-src="vid/fabrica.mp4"></video>
   <div class="wrap">
-    <h2 class="t2">Directo de la fábrica</h2>
-    <p class="lead">Compras con quien fabrica el panel, el núcleo y la pintura. Producción en hasta 15 días hábiles después de aprobar los colores.</p>
+    <div class="fab-head">
+      <h2 class="t2">Directo de la fábrica</h2>
+      <p class="lead">Compras con quien fabrica el panel, el núcleo y la pintura. Producción en hasta 15 días hábiles después de aprobar los colores.</p>
+    </div>
+    <div class="mosaico">
+      <figure><video muted loop playsinline preload="none" poster="vid/fab/c1.jpg" data-src="vid/fab/c1.mp4"></video><figcaption>Bobinas prepintadas</figcaption></figure>
+      <figure><video muted loop playsinline preload="none" poster="vid/fab/c2.jpg" data-src="vid/fab/c2.mp4"></video><figcaption>Línea de producción</figcaption></figure>
+      <figure><video muted loop playsinline preload="none" poster="vid/fab/c3.jpg" data-src="vid/fab/c3.mp4"></video><figcaption>Despacho de láminas</figcaption></figure>
+      <figure><video muted loop playsinline preload="none" poster="vid/fab/c4.jpg" data-src="vid/fab/c4.mp4"></video><figcaption>Paneles terminados</figcaption></figure>
+    </div>
     <div class="fab-nums">
       <div><b>6</b><span>líneas de ACM</span></div>
       <div><b>5.000</b><span>m²/día de corrugado</span></div>
@@ -516,17 +559,34 @@ const $ = id => document.getElementById(id);
 
 addEventListener("scroll", () => $("top").classList.toggle("scrolled", scrollY > 20), {passive:true});
 
-// Contadores
-const fmt = n => n.toLocaleString("es-ES").replace(/,/g, ".");
-const cio = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return; cio.unobserve(e.target);
-  const el = e.target, to = +el.dataset.count;
-  const out = v => el.textContent = to >= 10000 ? fmt(v) : v;
-  if (reduce) return out(to);
-  const s = performance.now(), dur = 1600;
-  (function f(t){ const k = Math.min(1, (t - s) / dur); out(Math.round(to * (1 - Math.pow(1 - k, 3)))); if (k < 1) requestAnimationFrame(f); })(s);
-}), {threshold:.5});
-document.querySelectorAll("[data-count]").forEach(el => cio.observe(el));
+// ===== Odômetro: cada dígito é uma coluna 0-9 que rola até o número =====
+function odo(el, txt){
+  if (el.dataset.txt === txt) return;
+  const fresh = !el.dataset.txt || el.dataset.txt.length !== txt.length;
+  if (fresh) {
+    el.innerHTML = [...txt].map(c => /\d/.test(c) ? `<span class="d"><span class="col">${"0123456789".split("").map(n => `<span>${n}</span>`).join("")}</span></span>` : `<span class="s">${c}</span>`).join("");
+    el.offsetHeight;
+  }
+  const cols = el.querySelectorAll(".col"); let k = 0;
+  [...txt].forEach(c => { if (/\d/.test(c)) cols[k++].style.transform = `translateY(${-c}em)`; });
+  el.dataset.txt = txt;
+}
+const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const oio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; oio.unobserve(e.target);
+  const el = e.target, alvo = el.dataset.odo; odo(el, alvo.replace(/\d/g, "0")); requestAnimationFrame(() => requestAnimationFrame(() => odo(el, alvo))); }), {threshold:.6});
+document.querySelectorAll("[data-odo]").forEach(el => oio.observe(el));
+
+// Produção de hoje no ritmo de 32.000 m²/dia, pelo relógio da China (UTC+8)
+(() => {
+  const el = $("hoy"), bar = $("diaBar"), hora = $("hora");
+  const valor = () => { const d = new Date(), seg = ((d.getUTCHours() + 8) % 24) * 3600 + d.getUTCMinutes() * 60 + d.getUTCSeconds() + d.getUTCMilliseconds() / 1000; return {f: seg / 86400, h: Math.floor(seg / 3600), m: Math.floor(seg / 60) % 60}; };
+  const txt = f => { const v = 32000 * f; return fmt(Math.floor(v)) + "," + Math.floor((v % 1) * 10); };
+  let vivo = false;
+  function tick(){ const {f, h, m} = valor(); odo(el, txt(f)); bar.style.width = (f * 100).toFixed(2) + "%";
+    hora.textContent = `Hora en China ${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`; }
+  el.textContent = "";
+  new IntersectionObserver(([e]) => { if (e.isIntersecting && !vivo) { vivo = true; odo(el, txt(valor().f).replace(/\d/g, "0")); setTimeout(() => { tick(); setInterval(() => { if (!document.hidden) tick(); }, 600); }, 60); } }, {threshold:.4}).observe(el);
+})();
 
 // ===== Fachada: troca de acabado com esmaecido =====
 const FIN = [
@@ -577,46 +637,18 @@ const FIN = [
   }
 })();
 
-// ===== Prueba de fuego =====
+// ===== Comparativo PE x FR A2: arrastar (ou setas do teclado) =====
 (() => {
-  const P = [...document.querySelectorAll(".probe")].map(el => { const c = el.querySelector("canvas"); return {el, c, ctx:c.getContext("2d"), parts:[], pe:el.classList.contains("pe"), d:1}; });
-  const btn = $("fuegoBtn"), T = $("fuegoT"), DUR = 7;
-  let t0 = 0, running = false;
-  function size(){ P.forEach(p => { const r = p.c.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2); p.c.width = r.width * d; p.c.height = r.height * d; p.d = d; }); }
-  function frame(now){
-    const s = (now - t0) / 1000, on = s < DUR;
-    T.textContent = Math.min(DUR, s).toFixed(1).replace(".", ",").padStart(4, "0") + " s";
-    P.forEach(p => {
-      const {ctx, c, d} = p, W = c.width, H = c.height;
-      ctx.clearRect(0, 0, W, H);
-      const alt = p.pe ? Math.min(.62, .1 + s * .085) : .08;   // no PE a chama sobe pelo painel
-      if (on) for (let k = 0; k < (p.pe ? 5 : 3); k++) { const sx = .5 + (Math.random() - .5) * (p.pe ? .5 : .32); p.parts.push({x: W * sx, y: H * .9, vx:(.5 - sx) * 1.2 * d + (Math.random() - .5) * .4 * d, vy:-(1.2 + Math.random() * 2) * d, life:1, r:(5 + Math.random() * 9) * d, smoke:false}); }
-      if (p.pe && s > 1.5 && on) for (let k = 0; k < 2; k++) p.parts.push({x: W * (.32 + Math.random() * .36), y: H * (.86 - alt), vx:(Math.random() - .5) * .8 * d, vy:-(.8 + Math.random()) * d, life:1, r:(14 + Math.random() * 20) * d, smoke:true});
-      p.parts = p.parts.filter(q => q.life > 0);
-      ctx.globalCompositeOperation = "lighter";
-      for (const q of p.parts) {
-        q.x += q.vx; q.y += q.vy; q.life -= q.smoke ? .008 : (p.pe ? .02 : .05) / (1 + alt);
-        if (q.smoke) continue;
-        const g = ctx.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.r);
-        g.addColorStop(0, `rgba(255,${(210 + 40 * q.life) | 0},140,${.5 * q.life})`); g.addColorStop(.45, `rgba(255,${(80 + 70 * q.life) | 0},20,${.28 * q.life})`); g.addColorStop(1, "rgba(255,40,0,0)");
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q.x, q.y, q.r * (1.6 - q.life * .6), 0, 7); ctx.fill();
-      }
-      ctx.globalCompositeOperation = "source-over";
-      for (const q of p.parts) { if (!q.smoke) continue;
-        const rr = q.r * (2 - q.life), g = ctx.createRadialGradient(q.x, q.y, 0, q.x, q.y, rr);
-        g.addColorStop(0, `rgba(28,30,38,${.5 * q.life})`); g.addColorStop(1, "rgba(28,30,38,0)");
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q.x, q.y, rr, 0, 7); ctx.fill(); }
-      p.el.querySelector(".burn").style.opacity = p.pe ? Math.min(1, s / 5) : Math.min(.15, s / 25);
-      if (s > 3) p.el.querySelector(".res").classList.add("on");
-    });
-    if (s < DUR + 2 || P.some(p => p.parts.length)) requestAnimationFrame(frame);
-    else { running = false; btn.textContent = "Repetir la prueba"; btn.disabled = false; }
-  }
-  btn.addEventListener("click", () => {
-    if (running) return; running = true; btn.disabled = true; btn.textContent = "Probando…";
-    P.forEach(p => { p.parts = []; p.el.querySelector(".burn").style.opacity = 0; p.el.querySelector(".res").classList.remove("on"); });
-    size(); t0 = performance.now(); requestAnimationFrame(frame);
-  });
+  const c = $("cmp"), h = c.querySelector(".cmp-h");
+  const set = x => { x = Math.max(4, Math.min(96, x)); c.style.setProperty("--x", x + "%"); h.setAttribute("aria-valuenow", Math.round(x)); };
+  const at = e => { const r = c.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
+  let arrasta = false;
+  c.addEventListener("pointerdown", e => { arrasta = true; at(e); try { c.setPointerCapture(e.pointerId); } catch (_) {} });
+  c.addEventListener("pointermove", e => { if (arrasta) at(e); });
+  const solta = () => arrasta = false;
+  c.addEventListener("pointerup", solta); c.addEventListener("pointercancel", solta);
+  h.addEventListener("keydown", e => { const x = parseFloat(c.style.getPropertyValue("--x")) || 50; if (e.key === "ArrowLeft") set(x - 5); if (e.key === "ArrowRight") set(x + 5); });
+  set(50);
 })();
 
 // ===== Corrugado: quadros avançam com a rolagem =====
@@ -655,8 +687,17 @@ function desenhaPlano(){
   const s = 330 / L, ph = L * s, pw = W * s, x0 = 200 - pw / 2 + 24, y0 = 380 - ph;
   const set = (id, o) => { const el = $(id); for (const k in o) el.setAttribute(k, o[k]); };
   set("pl", {x:x0, y:y0, width:pw, height:ph});
-  set("plEsc", {x:x0, y:y0, width:pw, height:ph});
-  set("plEdge", {x:x0 + pw, y:y0, width:Math.max(3, med.e * 1.8), height:ph});
+  set("plBr", {x:x0, y:y0, width:pw, height:ph});
+  set("plEdge", {x:x0 + pw, y:y0, width:Math.max(3, med.e * 1.4), height:ph});
+  set("plChao", {cx:x0 + pw / 2, rx:pw * .75});
+  // película: o desenho repete a cada 2,6 m de lámina, alinhado ao canto
+  const pat = $("pFilm"), tw = 2.6 * s, th = tw * 700 / 1024;
+  pat.setAttribute("width", tw); pat.setAttribute("height", th); pat.setAttribute("x", x0); pat.setAttribute("y", y0);
+  pat.firstElementChild.setAttribute("width", tw); pat.firstElementChild.setAttribute("height", th);
+  // canto da película descolando: mostra o alumínio por baixo
+  const c = Math.min(pw, ph) * .26, xr = x0 + pw;
+  set("peelAlu", {points:`${xr - c},${y0} ${xr},${y0} ${xr},${y0 + c}`});
+  set("peelAba", {points:`${xr - c},${y0} ${xr},${y0 + c} ${xr - c * .82},${y0 + c * .82}`});
   set("dimW", {x1:x0, x2:x0 + pw, y1:y0 - 14, y2:y0 - 14});
   set("tW", {x:x0 + pw / 2, y:y0 - 22}); $("tW").textContent = med.w + " mm";
   set("dimL", {x1:x0 + pw + 22, x2:x0 + pw + 22, y1:y0, y2:380});
@@ -672,9 +713,9 @@ document.querySelectorAll(".seg").forEach(seg => seg.addEventListener("click", e
 }));
 desenhaPlano();
 
-// Vídeo da fábrica: carrega e toca só quando aparece
-(() => { const v = $("fabVid");
-  new IntersectionObserver(([e]) => { if (e.isIntersecting && !reduce) { if (!v.src) v.src = v.dataset.src; v.play().catch(()=>{}); } else v.pause(); }, {threshold:.15}).observe(v); })();
+// Vídeos da fábrica: cada um carrega e toca só quando aparece
+document.querySelectorAll(".mosaico video").forEach(v => new IntersectionObserver(([e]) => {
+  if (e.isIntersecting && !reduce) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }, {threshold:.2}).observe(v));
 
 // ===== Formulário =====
 if (!AL_LIVE) document.body.classList.add("preview");
