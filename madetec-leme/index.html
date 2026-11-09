@@ -167,7 +167,8 @@ dialog[open]{display:flex;flex-direction:column;animation:up .22s ease-out}
   .intro > div:first-child,.facts,.cta{grid-column:1}
   .photo{grid-column:2;grid-row:1 / span 3;border-radius:22px 22px 0 0}
   .facts{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px}
-  .cta{flex-direction:row;align-items:center;gap:16px;padding-bottom:28px}
+  .cta{flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 16px;padding-bottom:28px}
+  .cta .dl{flex-basis:100%;justify-content:flex-start;align-self:auto;padding:0}
   .start,.full{min-width:300px}
   .guide > .wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start;padding-top:24px}
   .playerbox{top:16px;margin-inline:0;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
