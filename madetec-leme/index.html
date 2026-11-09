@@ -47,6 +47,19 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font
 .start:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .restart{all:unset;cursor:pointer;align-self:center;color:#c9cde4;font-weight:600;font-size:14px;padding:10px;text-decoration:underline;text-underline-offset:3px}
 .restart[hidden]{display:none}
+.full{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-radius:16px;border:2px solid rgba(255,255,255,.35);color:#fff;font-weight:700;font-size:17px;padding:0 18px}
+.full svg{width:20px;height:20px}
+.full small{font-weight:500;color:#c9cde4;font-size:14px}
+.full:focus-visible{outline:3px solid #fff;outline-offset:3px}
+#fullbox{max-width:1100px;margin:auto;border-radius:20px;background:#0f111a;color:#fff}
+#fullbox[open]{animation:none}
+#fullbox .dh{padding:14px 14px 10px 18px}
+#fullbox .dh h2{font-size:18px}
+#fullbox .close{background:rgba(255,255,255,.12)}
+#fullv{aspect-ratio:16/9;background:#fff}
+#fullbox p{margin:0;padding:12px 18px 16px;color:#c9cde4;font-size:14px}
+.sheetfull{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin:0 20px 10px;min-height:48px;border-radius:14px;background:var(--bg);font-weight:700;font-size:15px}
+.sheetfull svg{width:18px;height:18px}
 
 /* ---------- guia ---------- */
 .guide{padding-bottom:calc(var(--barh) + env(safe-area-inset-bottom,0px) + 28px);scroll-margin-top:0}
@@ -144,7 +157,7 @@ dialog[open]{display:flex;flex-direction:column;animation:up .22s ease-out}
   .photo{grid-column:2;grid-row:1 / span 3;border-radius:22px 22px 0 0}
   .facts{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px}
   .cta{flex-direction:row;align-items:center;gap:16px;padding-bottom:28px}
-  .start{min-width:300px}
+  .start,.full{min-width:300px}
   .guide > .wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start;padding-top:24px}
   .playerbox{top:16px;margin-inline:0;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
   .now{padding-top:0}
@@ -171,6 +184,7 @@ dialog[open]{display:flex;flex-direction:column;animation:up .22s ease-out}
     </ul>
     <div class="cta">
       <button class="start" id="start"><span id="starttxt">Começar a montagem</span><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="full" id="full"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>Ver o vídeo inteiro <small id="fulldur"></small></button>
       <button class="restart" id="restart" hidden>Começar do zero</button>
     </div>
   </div>
@@ -217,7 +231,14 @@ dialog[open]{display:flex;flex-direction:column;animation:up .22s ease-out}
 
 <dialog id="sheet" aria-labelledby="sheett">
   <div class="dh"><h2 id="sheett">Passos da montagem</h2><button class="close" id="close" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <button class="sheetfull" id="sheetfull"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>Ver o vídeo inteiro</button>
   <div class="list" id="list"></div>
+</dialog>
+
+<dialog id="fullbox" aria-labelledby="fullt">
+  <div class="dh"><h2 id="fullt">Montagem completa</h2><button class="close" id="fullclose" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <video id="fullv" playsinline controls preload="none"></video>
+  <p>Para montar com calma, use o passo a passo: ele para em cada etapa.</p>
 </dialog>
 
 <script>
@@ -334,6 +355,24 @@ if (cur > 0) {
   $("starttxt").textContent = s.n === 0 ? "Continuar de onde parei" : `Continuar do passo ${s.n}`;
   $("restart").hidden = false;
 }
+/* vídeo inteiro, com controles normais */
+const LEN = subs[subs.length - 1].t1;
+$("fulldur").textContent = `(${Math.floor(LEN / 60)} min ${String(Math.round(LEN % 60)).padStart(2, "0")} s)`;
+function openFull() {
+  const f = $("fullv");
+  if (!started) v.pause();
+  else { v.pause(); overlay("start"); }
+  if (!f.src) { f.poster = v.poster; f.src = v.getAttribute("src"); }
+  $("fullbox").showModal();
+  try { f.currentTime = 0; } catch (e) {}
+  const p = f.play(); if (p) p.catch(() => {});
+}
+function closeFull() { $("fullv").pause(); if ($("fullbox").open) $("fullbox").close(); }
+$("full").onclick = openFull;
+$("sheetfull").onclick = () => { $("sheet").close(); openFull(); };
+$("fullclose").onclick = closeFull;
+$("fullbox").addEventListener("close", () => $("fullv").pause());
+$("fullbox").addEventListener("click", (e) => { if (e.target === $("fullbox")) closeFull(); });
 overlay("start");
 show();
 requestAnimationFrame(tick);
